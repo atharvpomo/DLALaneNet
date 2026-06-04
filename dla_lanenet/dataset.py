@@ -1,12 +1,8 @@
 """
-TuSimple lane dataset -> multi-class segmentation masks.
+TuSimple lane dataset -> binary lane segmentation masks.
 
-TuSimple JSON provides lane center polylines (no solid/dotted labels). Masks use:
-  - class 1 (solid):  lanes 0 and 1
-  - class 2 (dotted): lanes 2 and 3
-  - class 3 (other):  optional seg_label pixels not covered by polylines
-
-Replace mapping when a dataset with true marking-type labels is available.
+TuSimple JSON: up to four lane center polylines per frame (x at fixed h_samples).
+All valid lane pixels are class 1 (lane); everything else is background (0).
 """
 
 from __future__ import annotations
@@ -60,14 +56,10 @@ def _rasterize_lanes(
     width: int,
     line_width: int = LANE_LINE_WIDTH,
 ) -> np.ndarray:
-    """Return uint8 mask with values in {0, 1, 2, 3}."""
+    """Return uint8 mask: 0=background, 1=lane (all TuSimple polylines)."""
     mask = np.zeros((height, width), dtype=np.uint8)
-    lane_class = (1, 1, 2, 2)  # proxy solid/dotted assignment by lane index
 
-    for lane_idx, xs in enumerate(lanes):
-        if lane_idx >= len(lane_class):
-            break
-        cls_id = lane_class[lane_idx]
+    for xs in lanes:
         points = []
         for x, y in zip(xs, h_samples):
             if x >= 0:
@@ -75,12 +67,11 @@ def _rasterize_lanes(
         if len(points) < 2:
             continue
         pts = np.array(points, dtype=np.int32).reshape(-1, 1, 2)
-        # LINE_8 only — LINE_AA writes gray edge values (e.g. 64, 128) that break CrossEntropy
         cv2.polylines(
             mask,
             [pts],
             isClosed=False,
-            color=int(cls_id),
+            color=1,
             thickness=line_width,
             lineType=cv2.LINE_8,
         )
@@ -157,11 +148,34 @@ class TuSimpleLaneDataset(Dataset):
         return image, mask
 
 
-def class_weights_from_dataset(dataset: TuSimpleLaneDataset) -> torch.Tensor:
+def estimate_class_weights(
+    dataset,
+    max_samples: int = 256,
+    min_pixels: int = 100,
+    max_weight: float = 15.0,
+) -> torch.Tensor:
+    """
+    Inverse-frequency weights from a random subset.
+
+    Classes with fewer than ``min_pixels`` in the sample get weight 1.0
+    (never use max(count, 1) on zero-count classes).
+    """
+    import random
+
+    n = len(dataset)
+    k = min(max_samples, n)
+    indices = random.sample(range(n), k) if k < n else list(range(n))
     counts = np.zeros(NUM_CLASSES, dtype=np.float64)
-    for _, mask in dataset:
+    for i in indices:
+        _, mask = dataset[i]
         for c in range(NUM_CLASSES):
             counts[c] += (mask.numpy() == c).sum()
-    counts = np.maximum(counts, 1.0)
-    weights = counts.sum() / (NUM_CLASSES * counts)
+
+    total = counts.sum()
+    weights = np.ones(NUM_CLASSES, dtype=np.float64)
+    for c in range(NUM_CLASSES):
+        if counts[c] >= min_pixels:
+            weights[c] = total / (NUM_CLASSES * counts[c])
+    weights = np.clip(weights, 0.05, max_weight)
+    weights /= weights.mean()
     return torch.tensor(weights, dtype=torch.float32)

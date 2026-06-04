@@ -4,3 +4,6 @@ torchvision==0.13.1
 onnx>=1.14.0
 opencv-python>=4.8.0
 numpy>=1.21.0,<2.0.0
+tqdm>=4.65.0
+tensorboard>=2.14.0
+six>=1.16.0

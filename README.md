@@ -1,6 +1,6 @@
 # DLALaneNet — DLA-Optimized Lane Segmentation
 
-PyTorch lane segmentation + ONNX export for **NVIDIA DRIVE Orin DLA 2.0** (DRIVE OS 6.0.10, TensorRT 8.6.13, INT8).
+PyTorch **binary lane segmentation** (background vs. lane) + ONNX export for **NVIDIA DRIVE Orin DLA 2.0** (DRIVE OS 6.0.10, TensorRT 8.6.13, INT8).
 
 ## Dataset
 
@@ -24,9 +24,50 @@ pip install -r requirements.txt
 
 ## Train
 
+**Pre-flight (recommended):**
+
+```bash
+python scripts/smoke_test.py --data-root /home/atharvsh/tusimple/TUSimple
+```
+
+**Training (8GB GPU defaults: batch 2, AMP, grad clip):**
+
 ```bash
 python scripts/train.py --data-root /home/atharvsh/tusimple/TUSimple --epochs 30
 ```
+
+**Note:** Checkpoints trained with the old 4-class head are incompatible — retrain after this change.
+
+**Resume after interrupt:**
+
+```bash
+python scripts/train.py \
+  --data-root /home/atharvsh/tusimple/TUSimple \
+  --epochs 30 \
+  --resume checkpoints/dla_lanenet_last.pt \
+  --lr 5e-4
+```
+
+**Logging:** per-epoch JSON lines in `logs/train_metrics.jsonl` (loss, lane acc, per-class IoU). Optional TensorBoard: `--tensorboard` (requires `pip install tensorboard`).
+
+**Best checkpoint** is saved by **lane mean IoU** (classes 1–3), not pixel accuracy.
+
+### Training features (vs earlier minimal script)
+
+| Feedback item | Status |
+|---------------|--------|
+| Per-class + mIoU + lane IoU | Done (`dla_lanenet/metrics.py`) |
+| Best ckpt by lane IoU, not pixel acc | Done |
+| Weighted cross-entropy | Done (256-sample estimate; `--no-class-weights` to disable) |
+| Full resume (optimizer, scheduler, scaler) | Done in `last.pt` / `epoch_*.pt` |
+| `last.pt` every epoch | Done |
+| JSONL metrics log | `logs/train_metrics.jsonl` |
+| TensorBoard | `--tensorboard` |
+| tqdm + samples/sec | Default on (`--no-tqdm` to disable) |
+| Early stopping | `--patience N` |
+| Periodic snapshots | `--save-every 5` (default) |
+| Smoke test | `scripts/smoke_test.py` |
+| Mask cache / heavy aug | Not yet (lower priority) |
 
 ## Export ONNX (static 1×3×512×1024)
 
@@ -61,20 +102,21 @@ Provide a calibration cache (`--calib`) built from representative front-camera f
 
 ### Class labels
 
-| ID | Name | TuSimple proxy |
-|----|------|----------------|
-| 0 | background | non-lane |
-| 1 | solid | lanes 0–1 rasterized |
-| 2 | dotted | lanes 2–3 rasterized |
-| 3 | other | reserved |
+| ID | Name | TuSimple source |
+|----|------|-----------------|
+| 0 | background | non-lane pixels |
+| 1 | lane | all valid polylines in `lanes` (up to 4 per frame) |
 
-TuSimple JSON has no true solid/dotted tags; lane index is used as a training proxy until type-annotated data is available.
+TuSimple JSON only provides lane **centerline** `(x, y)` samples — no solid/dotted or marking-type fields.
 
 ## Project layout
 
 ```
 dla_lanenet/     model, dataset, config
-scripts/         train.py, export_onnx.py
-checkpoints/     created by training
+scripts/         train.py, export_onnx.py, smoke_test.py
+dla_lanenet/     metrics.py (IoU / lane acc)
+checkpoints/     dla_lanenet_best.pt, dla_lanenet_last.pt
+logs/            train_metrics.jsonl, tensorboard/
 artifacts/       ONNX output
+docs/            ARCHITECTURE.md (team brief)
 ```

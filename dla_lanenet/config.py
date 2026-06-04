@@ -8,9 +8,9 @@ INPUT_CHANNELS = 3
 INPUT_HEIGHT = 512
 INPUT_WIDTH = 1024
 
-# Segmentation classes: background + lane marking types
-NUM_CLASSES = 4
-CLASS_NAMES = ("background", "solid", "dotted", "other")
+# Segmentation classes: TuSimple provides lane polylines only (no marking types)
+NUM_CLASSES = 2
+CLASS_NAMES = ("background", "lane")
 
 # TuSimple default layout (override via CLI)
 TUSIMPLE_ROOT = Path("/home/atharvsh/tusimple/TUSimple")

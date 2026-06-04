@@ -1,7 +1,7 @@
 # DLALaneNet — Technical Overview (Team Brief)
 
 **Target platform:** NVIDIA DRIVE Orin, DRIVE OS 6.0.10, TensorRT 8.6.13, **DLA 2.0 only** (no iGPU fallback)  
-**Task:** Multi-class dense lane segmentation (pixel-wise class mask)  
+**Task:** Binary lane segmentation (background vs. lane pixel mask)  
 **Deployment precision:** INT8 (calibrated in TensorRT; weights trained in FP32)
 
 ---
@@ -12,9 +12,9 @@
 | Item      | Value                                                               |
 | --------- | ------------------------------------------------------------------- |
 | Input     | RGB image, static shape `**[1, 3, 512, 1024]`** (NCHW)              |
-| Output    | Per-pixel class logits `**[1, 4, 512, 1024]**` — single tensor only |
+| Output    | Per-pixel class logits `**[1, 2, 512, 1024]**` — single tensor only |
 | Inference | `argmax` over channel dim → class ID per pixel                      |
-| Classes   | 0=background, 1=solid, 2=dotted, 3=other                            |
+| Classes   | 0=background, 1=lane (all TuSimple polylines)                       |
 
 
 The network predicts a **semantic segmentation mask**, not polylines. Downstream can skeletonize / fit splines if needed.
@@ -33,10 +33,10 @@ loss = nn.CrossEntropyLoss()(logits, target_mask)
 | Property         | Detail                                                          |
 | ---------------- | --------------------------------------------------------------- |
 | Type             | `torch.nn.CrossEntropyLoss` (softmax + NLL, numerically stable) |
-| `logits`         | `[B, 4, H, W]` raw scores from model                            |
-| `target_mask`    | `[B, H, W]` integer class IDs in `{0,1,2,3}`                    |
+| `logits`         | `[B, 2, H, W]` raw scores from model                            |
+| `target_mask`    | `[B, H, W]` integer class IDs in `{0, 1}`                       |
 | Auxiliary losses | **None** — by design for DLA (no extra outputs)                 |
-| Class weights    | Not used currently (can add if class imbalance hurts)           |
+| Class weights    | Estimated inverse-frequency (background vs. lane)               |
 
 
 **Why no auxiliary / deep supervision?**  
@@ -76,7 +76,7 @@ flowchart TB
     C3["c3 256ch 32×64"]
     C4["c4 512ch 16×32"]
     DEC["FCN Decoder 256ch"]
-    OUT["Logits 1×4×512×1024"]
+    OUT["Logits 1×2×512×1024"]
 
     IN --> BB
     BB --> C0 & C1 & C2 & C3 & C4
@@ -112,7 +112,7 @@ Standard ImageNet-style stem and stages — **DLA-safe ops only:**
 | +c1   | ConvTranspose2d ×2, **Add** proj(c1), BN, ReLU | 128×256            |
 | +c0   | ConvTranspose2d ×2, **Add** proj(c0), BN, ReLU | 256×512            |
 | Final | ConvTranspose2d ×2, BN, ReLU                   | 512×1024           |
-| Head  | 1×1 conv → 4 classes                           | 512×1024           |
+| Head  | 1×1 conv → 2 classes                           | 512×1024           |
 
 
 **Upsampling:** `ConvTranspose2d(kernel=4, stride=2, padding=1)` — maps to DLA-friendly deconv, **not** bilinear/bicubic `Resize`.
@@ -145,15 +145,12 @@ Standard ImageNet-style stem and stages — **DLA-safe ops only:**
 **Source:** TuSimple lane challenge JSON (polylines at fixed `h_samples`).
 
 
-| Class ID | Name       | How labels are built                        |
-| -------- | ---------- | ------------------------------------------- |
-| 0        | background | everywhere else                             |
-| 1        | solid      | lanes 0 & 1 rasterized (5 px polyline)      |
-| 2        | dotted     | lanes 2 & 3 rasterized                      |
-| 3        | other      | qreserved (unused in default rasterization) |
+| Class ID | Name       | How labels are built                                      |
+| -------- | ---------- | --------------------------------------------------------- |
+| 0        | background | everywhere else                                           |
+| 1        | lane       | each polyline in `lanes` rasterized (5 px, `LINE_8`)   |
 
-
-**Important:** TuSimple JSON has **no true solid/dotted marking type**. Lane index is a **training proxy** until a dataset with real marking-type annotations is used.
+**TuSimple label format:** each JSON line has `lanes` (up to 4 lists of x at fixed `h_samples`) and `raw_file`. There are **no** solid/dotted/marking-type fields — only centerlines.
 
 **Preprocessing:**
 
@@ -185,7 +182,7 @@ Standard ImageNet-style stem and stages — **DLA-safe ops only:**
 ```
 PyTorch checkpoint (.pt)
     → scripts/export_onnx.py
-    → artifacts/dla_lanenet_int8_ready.onnx  [1,3,512,1024] → [1,4,512,1024]
+    → artifacts/dla_lanenet_int8_ready.onnx  [1,3,512,1024] → [1,2,512,1024]
     → trtexec / TensorRT on Orin
     → .dla.engine (INT8, useDLACore, allowGPUFallback=false)
 ```
@@ -217,21 +214,23 @@ docs/
 ## 9. Metrics (current training script)
 
 
-| Metric          | Meaning                                                     |
-| --------------- | ----------------------------------------------------------- |
-| `train_loss`    | Mean cross-entropy per epoch                                |
-| `val_loss`      | CE on held-out 10% split                                    |
-| `val_pixel_acc` | Fraction of pixels with correct class (proxy; not lane IoU) |
+| Metric           | Meaning                                      |
+| ---------------- | -------------------------------------------- |
+| `train_loss`     | Mean cross-entropy per epoch                 |
+| `val_loss`       | CE on held-out 10% split                     |
+| `lane_iou`       | IoU for class 1 (lane) — **best checkpoint** |
+| `val_pixel_acc`  | All pixels (background-dominated)            |
+| `lane_pixel_acc` | Accuracy on lane pixels only                   |
 
 
-**Future improvement:** lane-centric IoU / TuSimple official metric — not yet implemented.
+**Future improvement:** TuSimple official polyline accuracy — not yet implemented.
 
 ---
 
 ## 10. Known limitations & roadmap
 
-1. **Solid/dotted labels** are proxy on TuSimple; replace with real marking-type GT when available.
-2. **Pixel accuracy** ≠ driving-safe lane metric; add IoU / polyline eval for reporting.
+1. **Binary lanes only** — no per-lane instance ID or marking type in current TuSimple pipeline.
+2. **Pixel accuracy** is secondary to **lane IoU** for model selection.
 3. **INT8 accuracy** depends on calibration set quality on target camera.
 4. **ResNet-34** variant not implemented; swap backbone if more capacity needed (same DLA rules).
 

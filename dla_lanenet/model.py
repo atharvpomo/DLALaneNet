@@ -159,7 +159,7 @@ class DLALaneSegNet(nn.Module):
         x = self.fuse_bn[4](x)
         x = self.fuse_relu(x)
 
-        return self.head(x)
+        return self.head(x)  # [B, num_classes, H, W]; default num_classes=2 (bg, lane)
 
 
 def build_model(num_classes: int = NUM_CLASSES) -> DLALaneSegNet:
