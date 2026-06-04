@@ -20,13 +20,20 @@ def _conv3x3(in_ch: int, out_ch: int, stride: int = 1) -> nn.Conv2d:
 
 
 def _deconv2x(in_ch: int, out_ch: int) -> nn.ConvTranspose2d:
-    """2x nearest-neighbor-equivalent upsample via transposed convolution."""
+    """
+    2x upsample for Orin DLA: ConvTranspose must use padding=0 only.
+
+    kernel=4, padding=1 (standard FCN) fails DLA with:
+      "DLA only supports padding in the range of [0-0]"
+    kernel=2, stride=2, padding=0 yields the same spatial sizes (16->32, etc.).
+    """
     return nn.ConvTranspose2d(
         in_ch,
         out_ch,
-        kernel_size=4,
+        kernel_size=2,
         stride=2,
-        padding=1,
+        padding=0,
+        output_padding=0,
         bias=False,
     )
 

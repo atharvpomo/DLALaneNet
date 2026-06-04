@@ -115,7 +115,7 @@ Standard ImageNet-style stem and stages — **DLA-safe ops only:**
 | Head  | 1×1 conv → 2 classes                           | 512×1024           |
 
 
-**Upsampling:** `ConvTranspose2d(kernel=4, stride=2, padding=1)` — maps to DLA-friendly deconv, **not** bilinear/bicubic `Resize`.
+**Upsampling:** `ConvTranspose2d(kernel=2, stride=2, padding=0)` — Orin DLA rejects `padding>0` on deconv; **not** bilinear/bicubic `Resize`.
 
 **Skip connections:** `1×1 Conv` channel align → **element-wise Add** — **not** `Concat` (avoids INT8 dynamic-range mismatch across branches on DLA).
 

@@ -95,7 +95,7 @@ Provide a calibration cache (`--calib`) built from representative front-camera f
 | Constraint | Implementation |
 |------------|----------------|
 | Backbone | Vanilla ResNet-18 (`Conv2d`, `BatchNorm`, `ReLU`, `MaxPool`, residual **Add**) |
-| Upsampling | Five `ConvTranspose2d(k=4, s=2, p=1)` stages — no `Resize`/bilinear |
+| Upsampling | Five `ConvTranspose2d(k=2, s=2, p=0)` stages (DLA requires zero padding) |
 | Skip fusion | `1×1` channel projection + **element-wise Add** (no `Concat`) |
 | Single output | `forward()` returns final `[B, 4, H, W]` logits only |
 | Static shapes | Fixed `512×1024`, batch `1` in export |
