@@ -1,0 +1,64 @@
+# Train
+python scripts/train.py --data-root /home/atharvsh/tusimple/TUSimple --epochs 30 --lr 1e-3
+
+# Export ONNX (after training)
+python scripts/export_onnx.py --checkpoint checkpoints/dla_lanenet_best.pt --output artifacts/dla_lanenet_best.onnx
+
+# Local ONNX preview
+python scripts/infer_onnx.py --onnx artifacts/dla_lanenet_best.onnx --output artifacts/onnx_preview.png
+
+# INT8 calibration tensors (copy calib_npy/ to tegra)
+python scripts/export_calib_npy.py --num-samples 100
+
+# =========================================================================
+# PURE DLA on Orin (no GPU fallback). This build (TensorRT 8.6.13) has:
+#   --useDLA  --inputIOFormats  --outputIOFormats  --half2  --int8  --calib
+# It does NOT have: --useSafeDLA, --dlaLayerConfig, --allowGPUFallback.
+# "Reformat CopyNode for Input Tensor 0" = FP32->FP16/chw->chw16 I/O conversion
+# at the network boundary (NOT a model layer; Conv_0..Conv_71 already on DLA).
+# Fix = make the I/O match DLA's native format so no reformat is inserted.
+# =========================================================================
+
+# Valid fmt tokens (TRT 8.6): chw chw2 chw4 hwc8 chw16 chw32 dhwc8 cdhw32 hwc dla_linear dla_hwc4
+# DLA-only layouts: chw16, dla_linear, dla_hwc4. type must be fp16 for DLA.
+
+# STEP 1A — DLA-native row-major I/O (worked on TRT 8.6 per NVIDIA issue #3265).
+cd /home/benchdev2
+/usr/local/driveworks/tools/dnn/tensorRT_optimization \
+  --modelType=onnx \
+  --onnxFile=/home/benchdev2/dla_lanenet_latest.onnx \
+  --out=/home/benchdev2/dla_lanenet.engine \
+  --useDLA=1 \
+  --inputIOFormats=fp16:dla_linear \
+  --outputIOFormats=fp16:dla_linear \
+  --verbose=1 2>&1 | tee /home/benchdev2/dla_io.log
+
+# STEP 1B — if 1A still reformats, try chw16 (DLA 16-ch packed):
+#   --inputIOFormats=fp16:chw16 --outputIOFormats=fp16:chw16
+# STEP 1C — 3-channel image input variant:
+#   --inputIOFormats=fp16:dla_hwc4 --outputIOFormats=fp16:dla_linear
+
+# STEP 2 — if all reformat: re-export ONNX with FP16 I/O (no retrain), then 1A again.
+#   On dev box:
+#     python scripts/export_onnx.py --checkpoint checkpoints/dla_lanenet_best.pt \
+#       --output artifacts/dla_lanenet_fp16io.onnx --fp16-io
+#   Copy artifacts/dla_lanenet_fp16io.onnx to /home/benchdev2/, then on Orin:
+#     tensorRT_optimization --modelType=onnx \
+#       --onnxFile=/home/benchdev2/dla_lanenet_fp16io.onnx \
+#       --out=/home/benchdev2/dla_lanenet.engine --useDLA=1 \
+#       --inputIOFormats=fp16:dla_linear --outputIOFormats=fp16:dla_linear
+
+# NOTE: --int8 crashes this DriveWorks build with stoi even without DLA (tool bug / broken INT8 path)
+
+# Orin DLA INT8 — try IN THIS ORDER (stoi crash = bad flag combo)
+
+# 1) Minimal INT8 DLA (no npyFileDir, no chw32)
+# ./tensorRT_optimization --modelType=onnx --onnxFile=/home/benchdev2/dla_lanenet_best.onnx --out=/home/benchdev2/dla_lanenet_best_int8.engine --useDLA=1 --int8 --verbose=1
+
+# 2) INT8 + calib cache (after step 1 creates lane_calib.cache, or from NVIDIA calib tool)
+# ./tensorRT_optimization --modelType=onnx --onnxFile=/home/benchdev2/dla_lanenet_best.onnx --out=/home/benchdev2/dla_lanenet_best_int8.engine --useDLA=1 --int8 --calib=/home/benchdev2/lane_calib.cache --verbose=1
+
+# 3) I/O validation only (needs validate_npy/input.npy + logits.npy — NOT input_0000.npy)
+# ./tensorRT_optimization ... --npyFileDir=/home/benchdev2/validate_npy
+
+# AVOID on first try: --inputIOFormats=int8:chw32 and --npyFileDir=calib_npy (causes stoi crash)

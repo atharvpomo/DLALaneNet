@@ -1,0 +1,1014 @@
+benchdev2@tegra-ubuntu:~$ cat dla_io.log 
+[03-06-2026 22:13:36] [MemUsageChange] Init CUDA: CPU +409, GPU +0, now: CPU 468, GPU 3088 (MiB)
+[03-06-2026 22:13:36] Trying to load shared library libnvinfer_builder_resource.so.8.6.13
+[03-06-2026 22:13:36] Loaded shared library libnvinfer_builder_resource.so.8.6.13
+[03-06-2026 22:13:38] [MemUsageChange] Init builder kernel library: CPU +833, GPU +678, now: CPU 1333, GPU 3799 (MiB)
+[03-06-2026 22:13:38] DNNGenerator: Initializing TensorRT generation on model /home/benchdev2/dla_lanenet_latest.onnx.
+[03-06-2026 22:13:38] ----------------------------------------------------------------
+[03-06-2026 22:13:38] Input filename:   /home/benchdev2/dla_lanenet_latest.onnx
+[03-06-2026 22:13:38] ONNX IR version:  0.0.7
+[03-06-2026 22:13:38] Opset version:    13
+[03-06-2026 22:13:38] Producer name:    pytorch
+[03-06-2026 22:13:38] Producer version: 1.12.1
+[03-06-2026 22:13:38] Domain:           
+[03-06-2026 22:13:38] Model version:    0
+[03-06-2026 22:13:38] Doc string:       
+[03-06-2026 22:13:38] ----------------------------------------------------------------
+[03-06-2026 22:13:38] Registered plugin creator - ::BatchedNMSDynamic_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::BatchedNMS_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::BatchTilePlugin_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::Clip_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::CoordConvAC version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::CropAndResizeDynamic version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::CropAndResize version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::DecodeBbox3DPlugin version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::DetectionLayer_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::EfficientNMS_Explicit_TF_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::EfficientNMS_Implicit_TF_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::EfficientNMS_ONNX_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::EfficientNMS_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::FlattenConcat_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::GenerateDetection_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::GridAnchor_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::GridAnchorRect_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::InstanceNormalization_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::InstanceNormalization_TRT version 2
+[03-06-2026 22:13:38] Registered plugin creator - ::LReLU_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::ModulatedDeformConv2d version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::MultilevelCropAndResize_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::MultilevelProposeROI_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::MultiscaleDeformableAttnPlugin_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::NMSDynamic_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::NMS_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::Normalize_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::PillarScatterPlugin version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::PriorBox_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::ProposalDynamic version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::ProposalLayer_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::Proposal version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::PyramidROIAlign_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::Region_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::Reorg_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::ResizeNearest_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::ROIAlign_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::RPROI_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::ScatterND version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::SpecialSlice_TRT version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::Split version 1
+[03-06-2026 22:13:38] Registered plugin creator - ::VoxelGeneratorPlugin version 1
+[03-06-2026 22:13:38] Adding network input: input with dtype: float32, dimensions: (1, 3, 512, 1024)
+[03-06-2026 22:13:38] Registering tensor: input for ONNX tensor: input
+[03-06-2026 22:13:38] Importing initializer: proj_c3.weight
+[03-06-2026 22:13:38] Importing initializer: proj_c2.weight
+[03-06-2026 22:13:38] Importing initializer: proj_c1.weight
+[03-06-2026 22:13:38] Importing initializer: proj_c0.weight
+[03-06-2026 22:13:38] Importing initializer: up1.weight
+[03-06-2026 22:13:38] Importing initializer: up2.weight
+[03-06-2026 22:13:38] Importing initializer: up3.weight
+[03-06-2026 22:13:38] Importing initializer: up4.weight
+[03-06-2026 22:13:38] Importing initializer: up5.weight
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.0.weight
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.0.bias
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.0.running_mean
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.0.running_var
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.1.weight
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.1.bias
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.1.running_mean
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.1.running_var
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.2.weight
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.2.bias
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.2.running_mean
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.2.running_var
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.3.weight
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.3.bias
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.3.running_mean
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.3.running_var
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.4.weight
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.4.bias
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.4.running_mean
+[03-06-2026 22:13:38] Importing initializer: fuse_bn.4.running_var
+[03-06-2026 22:13:38] Importing initializer: head.weight
+[03-06-2026 22:13:38] Importing initializer: head.bias
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_257
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_258
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_260
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_261
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_263
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_264
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_266
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_267
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_269
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_270
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_272
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_273
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_275
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_276
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_278
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_279
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_281
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_282
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_284
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_285
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_287
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_288
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_290
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_291
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_293
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_294
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_296
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_297
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_299
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_300
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_302
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_303
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_305
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_306
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_308
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_309
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_311
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_312
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_314
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_315
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_317
+[03-06-2026 22:13:38] Importing initializer: onnx::Conv_318
+[03-06-2026 22:13:38] Parsing node: Conv_0 [Conv]
+[03-06-2026 22:13:38] Searching for input: input
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_257
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_258
+[03-06-2026 22:13:38] Conv_0 [Conv] inputs: [input -> (1, 3, 512, 1024)[FLOAT]], [onnx::Conv_257 -> (64, 3, 7, 7)[FLOAT]], [onnx::Conv_258 -> (64)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 3, 512, 1024)
+[03-06-2026 22:13:38] Registering layer: Conv_0 for ONNX node: Conv_0
+[03-06-2026 22:13:38] Using kernel: (7, 7), strides: (2, 2), prepadding: (3, 3), postpadding: (3, 3), dilations: (1, 1), numOutputs: 64
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 64, 256, 512)
+[03-06-2026 22:13:38] Registering tensor: input.4 for ONNX tensor: input.4
+[03-06-2026 22:13:38] Conv_0 [Conv] outputs: [input.4 -> (1, 64, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_1 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.4
+[03-06-2026 22:13:38] Relu_1 [Relu] inputs: [input.4 -> (1, 64, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_1 for ONNX node: Relu_1
+[03-06-2026 22:13:38] Registering tensor: onnx::MaxPool_165 for ONNX tensor: onnx::MaxPool_165
+[03-06-2026 22:13:38] Relu_1 [Relu] outputs: [onnx::MaxPool_165 -> (1, 64, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: MaxPool_2 [MaxPool]
+[03-06-2026 22:13:38] Searching for input: onnx::MaxPool_165
+[03-06-2026 22:13:38] MaxPool_2 [MaxPool] inputs: [onnx::MaxPool_165 -> (1, 64, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: MaxPool_2 for ONNX node: MaxPool_2
+[03-06-2026 22:13:38] Registering tensor: input.8 for ONNX tensor: input.8
+[03-06-2026 22:13:38] MaxPool_2 [MaxPool] outputs: [input.8 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_3 [Conv]
+[03-06-2026 22:13:38] Searching for input: input.8
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_260
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_261
+[03-06-2026 22:13:38] Conv_3 [Conv] inputs: [input.8 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_260 -> (64, 64, 3, 3)[FLOAT]], [onnx::Conv_261 -> (64)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_3 for ONNX node: Conv_3
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 64
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering tensor: input.16 for ONNX tensor: input.16
+[03-06-2026 22:13:38] Conv_3 [Conv] outputs: [input.16 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_4 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.16
+[03-06-2026 22:13:38] Relu_4 [Relu] inputs: [input.16 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_4 for ONNX node: Relu_4
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_169 for ONNX tensor: onnx::Conv_169
+[03-06-2026 22:13:38] Relu_4 [Relu] outputs: [onnx::Conv_169 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_5 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_169
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_263
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_264
+[03-06-2026 22:13:38] Conv_5 [Conv] inputs: [onnx::Conv_169 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_263 -> (64, 64, 3, 3)[FLOAT]], [onnx::Conv_264 -> (64)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_5 for ONNX node: Conv_5
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 64
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_262 for ONNX tensor: onnx::Add_262
+[03-06-2026 22:13:38] Conv_5 [Conv] outputs: [onnx::Add_262 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_6 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_262
+[03-06-2026 22:13:38] Searching for input: input.8
+[03-06-2026 22:13:38] Add_6 [Add] inputs: [onnx::Add_262 -> (1, 64, 128, 256)[FLOAT]], [input.8 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_6 for ONNX node: Add_6
+[03-06-2026 22:13:38] Registering tensor: input.24 for ONNX tensor: input.24
+[03-06-2026 22:13:38] Add_6 [Add] outputs: [input.24 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_7 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.24
+[03-06-2026 22:13:38] Relu_7 [Relu] inputs: [input.24 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_7 for ONNX node: Relu_7
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_173 for ONNX tensor: onnx::Conv_173
+[03-06-2026 22:13:38] Relu_7 [Relu] outputs: [onnx::Conv_173 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_8 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_173
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_266
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_267
+[03-06-2026 22:13:38] Conv_8 [Conv] inputs: [onnx::Conv_173 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_266 -> (64, 64, 3, 3)[FLOAT]], [onnx::Conv_267 -> (64)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_8 for ONNX node: Conv_8
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 64
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering tensor: input.32 for ONNX tensor: input.32
+[03-06-2026 22:13:38] Conv_8 [Conv] outputs: [input.32 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_9 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.32
+[03-06-2026 22:13:38] Relu_9 [Relu] inputs: [input.32 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_9 for ONNX node: Relu_9
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_176 for ONNX tensor: onnx::Conv_176
+[03-06-2026 22:13:38] Relu_9 [Relu] outputs: [onnx::Conv_176 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_10 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_176
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_269
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_270
+[03-06-2026 22:13:38] Conv_10 [Conv] inputs: [onnx::Conv_176 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_269 -> (64, 64, 3, 3)[FLOAT]], [onnx::Conv_270 -> (64)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_10 for ONNX node: Conv_10
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 64
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_268 for ONNX tensor: onnx::Add_268
+[03-06-2026 22:13:38] Conv_10 [Conv] outputs: [onnx::Add_268 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_11 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_268
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_173
+[03-06-2026 22:13:38] Add_11 [Add] inputs: [onnx::Add_268 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_173 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_11 for ONNX node: Add_11
+[03-06-2026 22:13:38] Registering tensor: input.40 for ONNX tensor: input.40
+[03-06-2026 22:13:38] Add_11 [Add] outputs: [input.40 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_12 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.40
+[03-06-2026 22:13:38] Relu_12 [Relu] inputs: [input.40 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_12 for ONNX node: Relu_12
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_180 for ONNX tensor: onnx::Conv_180
+[03-06-2026 22:13:38] Relu_12 [Relu] outputs: [onnx::Conv_180 -> (1, 64, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_13 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_180
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_272
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_273
+[03-06-2026 22:13:38] Conv_13 [Conv] inputs: [onnx::Conv_180 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_272 -> (128, 64, 3, 3)[FLOAT]], [onnx::Conv_273 -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_13 for ONNX node: Conv_13
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (2, 2), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering tensor: input.48 for ONNX tensor: input.48
+[03-06-2026 22:13:38] Conv_13 [Conv] outputs: [input.48 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_14 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.48
+[03-06-2026 22:13:38] Relu_14 [Relu] inputs: [input.48 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_14 for ONNX node: Relu_14
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_183 for ONNX tensor: onnx::Conv_183
+[03-06-2026 22:13:38] Relu_14 [Relu] outputs: [onnx::Conv_183 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_15 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_183
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_275
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_276
+[03-06-2026 22:13:38] Conv_15 [Conv] inputs: [onnx::Conv_183 -> (1, 128, 64, 128)[FLOAT]], [onnx::Conv_275 -> (128, 128, 3, 3)[FLOAT]], [onnx::Conv_276 -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering layer: Conv_15 for ONNX node: Conv_15
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_274 for ONNX tensor: onnx::Add_274
+[03-06-2026 22:13:38] Conv_15 [Conv] outputs: [onnx::Add_274 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_16 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_180
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_278
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_279
+[03-06-2026 22:13:38] Conv_16 [Conv] inputs: [onnx::Conv_180 -> (1, 64, 128, 256)[FLOAT]], [onnx::Conv_278 -> (128, 64, 1, 1)[FLOAT]], [onnx::Conv_279 -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_16 for ONNX node: Conv_16
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (2, 2), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_277 for ONNX tensor: onnx::Add_277
+[03-06-2026 22:13:38] Conv_16 [Conv] outputs: [onnx::Add_277 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_17 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_274
+[03-06-2026 22:13:38] Searching for input: onnx::Add_277
+[03-06-2026 22:13:38] Add_17 [Add] inputs: [onnx::Add_274 -> (1, 128, 64, 128)[FLOAT]], [onnx::Add_277 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_17 for ONNX node: Add_17
+[03-06-2026 22:13:38] Registering tensor: input.60 for ONNX tensor: input.60
+[03-06-2026 22:13:38] Add_17 [Add] outputs: [input.60 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_18 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.60
+[03-06-2026 22:13:38] Relu_18 [Relu] inputs: [input.60 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_18 for ONNX node: Relu_18
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_189 for ONNX tensor: onnx::Conv_189
+[03-06-2026 22:13:38] Relu_18 [Relu] outputs: [onnx::Conv_189 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_19 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_189
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_281
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_282
+[03-06-2026 22:13:38] Conv_19 [Conv] inputs: [onnx::Conv_189 -> (1, 128, 64, 128)[FLOAT]], [onnx::Conv_281 -> (128, 128, 3, 3)[FLOAT]], [onnx::Conv_282 -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering layer: Conv_19 for ONNX node: Conv_19
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering tensor: input.68 for ONNX tensor: input.68
+[03-06-2026 22:13:38] Conv_19 [Conv] outputs: [input.68 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_20 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.68
+[03-06-2026 22:13:38] Relu_20 [Relu] inputs: [input.68 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_20 for ONNX node: Relu_20
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_192 for ONNX tensor: onnx::Conv_192
+[03-06-2026 22:13:38] Relu_20 [Relu] outputs: [onnx::Conv_192 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_21 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_192
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_284
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_285
+[03-06-2026 22:13:38] Conv_21 [Conv] inputs: [onnx::Conv_192 -> (1, 128, 64, 128)[FLOAT]], [onnx::Conv_284 -> (128, 128, 3, 3)[FLOAT]], [onnx::Conv_285 -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering layer: Conv_21 for ONNX node: Conv_21
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_283 for ONNX tensor: onnx::Add_283
+[03-06-2026 22:13:38] Conv_21 [Conv] outputs: [onnx::Add_283 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_22 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_283
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_189
+[03-06-2026 22:13:38] Add_22 [Add] inputs: [onnx::Add_283 -> (1, 128, 64, 128)[FLOAT]], [onnx::Conv_189 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_22 for ONNX node: Add_22
+[03-06-2026 22:13:38] Registering tensor: input.76 for ONNX tensor: input.76
+[03-06-2026 22:13:38] Add_22 [Add] outputs: [input.76 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_23 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.76
+[03-06-2026 22:13:38] Relu_23 [Relu] inputs: [input.76 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_23 for ONNX node: Relu_23
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_196 for ONNX tensor: onnx::Conv_196
+[03-06-2026 22:13:38] Relu_23 [Relu] outputs: [onnx::Conv_196 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_24 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_196
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_287
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_288
+[03-06-2026 22:13:38] Conv_24 [Conv] inputs: [onnx::Conv_196 -> (1, 128, 64, 128)[FLOAT]], [onnx::Conv_287 -> (256, 128, 3, 3)[FLOAT]], [onnx::Conv_288 -> (256)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering layer: Conv_24 for ONNX node: Conv_24
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (2, 2), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 256
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering tensor: input.84 for ONNX tensor: input.84
+[03-06-2026 22:13:38] Conv_24 [Conv] outputs: [input.84 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_25 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.84
+[03-06-2026 22:13:38] Relu_25 [Relu] inputs: [input.84 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_25 for ONNX node: Relu_25
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_199 for ONNX tensor: onnx::Conv_199
+[03-06-2026 22:13:38] Relu_25 [Relu] outputs: [onnx::Conv_199 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_26 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_199
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_290
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_291
+[03-06-2026 22:13:38] Conv_26 [Conv] inputs: [onnx::Conv_199 -> (1, 256, 32, 64)[FLOAT]], [onnx::Conv_290 -> (256, 256, 3, 3)[FLOAT]], [onnx::Conv_291 -> (256)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering layer: Conv_26 for ONNX node: Conv_26
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 256
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_289 for ONNX tensor: onnx::Add_289
+[03-06-2026 22:13:38] Conv_26 [Conv] outputs: [onnx::Add_289 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_27 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_196
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_293
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_294
+[03-06-2026 22:13:38] Conv_27 [Conv] inputs: [onnx::Conv_196 -> (1, 128, 64, 128)[FLOAT]], [onnx::Conv_293 -> (256, 128, 1, 1)[FLOAT]], [onnx::Conv_294 -> (256)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering layer: Conv_27 for ONNX node: Conv_27
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (2, 2), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 256
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_292 for ONNX tensor: onnx::Add_292
+[03-06-2026 22:13:38] Conv_27 [Conv] outputs: [onnx::Add_292 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_28 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_289
+[03-06-2026 22:13:38] Searching for input: onnx::Add_292
+[03-06-2026 22:13:38] Add_28 [Add] inputs: [onnx::Add_289 -> (1, 256, 32, 64)[FLOAT]], [onnx::Add_292 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_28 for ONNX node: Add_28
+[03-06-2026 22:13:38] Registering tensor: input.96 for ONNX tensor: input.96
+[03-06-2026 22:13:38] Add_28 [Add] outputs: [input.96 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_29 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.96
+[03-06-2026 22:13:38] Relu_29 [Relu] inputs: [input.96 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_29 for ONNX node: Relu_29
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_205 for ONNX tensor: onnx::Conv_205
+[03-06-2026 22:13:38] Relu_29 [Relu] outputs: [onnx::Conv_205 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_30 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_205
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_296
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_297
+[03-06-2026 22:13:38] Conv_30 [Conv] inputs: [onnx::Conv_205 -> (1, 256, 32, 64)[FLOAT]], [onnx::Conv_296 -> (256, 256, 3, 3)[FLOAT]], [onnx::Conv_297 -> (256)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering layer: Conv_30 for ONNX node: Conv_30
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 256
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering tensor: input.104 for ONNX tensor: input.104
+[03-06-2026 22:13:38] Conv_30 [Conv] outputs: [input.104 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_31 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.104
+[03-06-2026 22:13:38] Relu_31 [Relu] inputs: [input.104 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_31 for ONNX node: Relu_31
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_208 for ONNX tensor: onnx::Conv_208
+[03-06-2026 22:13:38] Relu_31 [Relu] outputs: [onnx::Conv_208 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_32 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_208
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_299
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_300
+[03-06-2026 22:13:38] Conv_32 [Conv] inputs: [onnx::Conv_208 -> (1, 256, 32, 64)[FLOAT]], [onnx::Conv_299 -> (256, 256, 3, 3)[FLOAT]], [onnx::Conv_300 -> (256)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering layer: Conv_32 for ONNX node: Conv_32
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 256
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_298 for ONNX tensor: onnx::Add_298
+[03-06-2026 22:13:38] Conv_32 [Conv] outputs: [onnx::Add_298 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_33 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_298
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_205
+[03-06-2026 22:13:38] Add_33 [Add] inputs: [onnx::Add_298 -> (1, 256, 32, 64)[FLOAT]], [onnx::Conv_205 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_33 for ONNX node: Add_33
+[03-06-2026 22:13:38] Registering tensor: input.112 for ONNX tensor: input.112
+[03-06-2026 22:13:38] Add_33 [Add] outputs: [input.112 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_34 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.112
+[03-06-2026 22:13:38] Relu_34 [Relu] inputs: [input.112 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_34 for ONNX node: Relu_34
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_212 for ONNX tensor: onnx::Conv_212
+[03-06-2026 22:13:38] Relu_34 [Relu] outputs: [onnx::Conv_212 -> (1, 256, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_35 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_212
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_302
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_303
+[03-06-2026 22:13:38] Conv_35 [Conv] inputs: [onnx::Conv_212 -> (1, 256, 32, 64)[FLOAT]], [onnx::Conv_302 -> (512, 256, 3, 3)[FLOAT]], [onnx::Conv_303 -> (512)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering layer: Conv_35 for ONNX node: Conv_35
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (2, 2), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 512
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering tensor: input.120 for ONNX tensor: input.120
+[03-06-2026 22:13:38] Conv_35 [Conv] outputs: [input.120 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_36 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.120
+[03-06-2026 22:13:38] Relu_36 [Relu] inputs: [input.120 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_36 for ONNX node: Relu_36
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_215 for ONNX tensor: onnx::Conv_215
+[03-06-2026 22:13:38] Relu_36 [Relu] outputs: [onnx::Conv_215 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_37 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_215
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_305
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_306
+[03-06-2026 22:13:38] Conv_37 [Conv] inputs: [onnx::Conv_215 -> (1, 512, 16, 32)[FLOAT]], [onnx::Conv_305 -> (512, 512, 3, 3)[FLOAT]], [onnx::Conv_306 -> (512)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering layer: Conv_37 for ONNX node: Conv_37
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 512
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_304 for ONNX tensor: onnx::Add_304
+[03-06-2026 22:13:38] Conv_37 [Conv] outputs: [onnx::Add_304 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_38 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_212
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_308
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_309
+[03-06-2026 22:13:38] Conv_38 [Conv] inputs: [onnx::Conv_212 -> (1, 256, 32, 64)[FLOAT]], [onnx::Conv_308 -> (512, 256, 1, 1)[FLOAT]], [onnx::Conv_309 -> (512)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering layer: Conv_38 for ONNX node: Conv_38
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (2, 2), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 512
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_307 for ONNX tensor: onnx::Add_307
+[03-06-2026 22:13:38] Conv_38 [Conv] outputs: [onnx::Add_307 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_39 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_304
+[03-06-2026 22:13:38] Searching for input: onnx::Add_307
+[03-06-2026 22:13:38] Add_39 [Add] inputs: [onnx::Add_304 -> (1, 512, 16, 32)[FLOAT]], [onnx::Add_307 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_39 for ONNX node: Add_39
+[03-06-2026 22:13:38] Registering tensor: input.132 for ONNX tensor: input.132
+[03-06-2026 22:13:38] Add_39 [Add] outputs: [input.132 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_40 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.132
+[03-06-2026 22:13:38] Relu_40 [Relu] inputs: [input.132 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_40 for ONNX node: Relu_40
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_221 for ONNX tensor: onnx::Conv_221
+[03-06-2026 22:13:38] Relu_40 [Relu] outputs: [onnx::Conv_221 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_41 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_221
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_311
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_312
+[03-06-2026 22:13:38] Conv_41 [Conv] inputs: [onnx::Conv_221 -> (1, 512, 16, 32)[FLOAT]], [onnx::Conv_311 -> (512, 512, 3, 3)[FLOAT]], [onnx::Conv_312 -> (512)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering layer: Conv_41 for ONNX node: Conv_41
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 512
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering tensor: input.140 for ONNX tensor: input.140
+[03-06-2026 22:13:38] Conv_41 [Conv] outputs: [input.140 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_42 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.140
+[03-06-2026 22:13:38] Relu_42 [Relu] inputs: [input.140 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_42 for ONNX node: Relu_42
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_224 for ONNX tensor: onnx::Conv_224
+[03-06-2026 22:13:38] Relu_42 [Relu] outputs: [onnx::Conv_224 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_43 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_224
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_314
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_315
+[03-06-2026 22:13:38] Conv_43 [Conv] inputs: [onnx::Conv_224 -> (1, 512, 16, 32)[FLOAT]], [onnx::Conv_314 -> (512, 512, 3, 3)[FLOAT]], [onnx::Conv_315 -> (512)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering layer: Conv_43 for ONNX node: Conv_43
+[03-06-2026 22:13:38] Using kernel: (3, 3), strides: (1, 1), prepadding: (1, 1), postpadding: (1, 1), dilations: (1, 1), numOutputs: 512
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_313 for ONNX tensor: onnx::Add_313
+[03-06-2026 22:13:38] Conv_43 [Conv] outputs: [onnx::Add_313 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_44 [Add]
+[03-06-2026 22:13:38] Searching for input: onnx::Add_313
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_221
+[03-06-2026 22:13:38] Add_44 [Add] inputs: [onnx::Add_313 -> (1, 512, 16, 32)[FLOAT]], [onnx::Conv_221 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_44 for ONNX node: Add_44
+[03-06-2026 22:13:38] Registering tensor: input.148 for ONNX tensor: input.148
+[03-06-2026 22:13:38] Add_44 [Add] outputs: [input.148 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_45 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.148
+[03-06-2026 22:13:38] Relu_45 [Relu] inputs: [input.148 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_45 for ONNX node: Relu_45
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_228 for ONNX tensor: onnx::Conv_228
+[03-06-2026 22:13:38] Relu_45 [Relu] outputs: [onnx::Conv_228 -> (1, 512, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_46 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_228
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_317
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_318
+[03-06-2026 22:13:38] Conv_46 [Conv] inputs: [onnx::Conv_228 -> (1, 512, 16, 32)[FLOAT]], [onnx::Conv_317 -> (128, 512, 1, 1)[FLOAT]], [onnx::Conv_318 -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 512, 16, 32)
+[03-06-2026 22:13:38] Registering layer: Conv_46 for ONNX node: Conv_46
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (1, 1), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 16, 32)
+[03-06-2026 22:13:38] Registering tensor: input.156 for ONNX tensor: input.156
+[03-06-2026 22:13:38] Conv_46 [Conv] outputs: [input.156 -> (1, 128, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_47 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.156
+[03-06-2026 22:13:38] Relu_47 [Relu] inputs: [input.156 -> (1, 128, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_47 for ONNX node: Relu_47
+[03-06-2026 22:13:38] Registering tensor: onnx::ConvTranspose_231 for ONNX tensor: onnx::ConvTranspose_231
+[03-06-2026 22:13:38] Relu_47 [Relu] outputs: [onnx::ConvTranspose_231 -> (1, 128, 16, 32)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: ConvTranspose_48 [ConvTranspose]
+[03-06-2026 22:13:38] Searching for input: onnx::ConvTranspose_231
+[03-06-2026 22:13:38] Searching for input: up1.weight
+[03-06-2026 22:13:38] ConvTranspose_48 [ConvTranspose] inputs: [onnx::ConvTranspose_231 -> (1, 128, 16, 32)[FLOAT]], [up1.weight -> (128, 128, 2, 2)[FLOAT]], 
+[03-06-2026 22:13:38] Running deconvolution with: 
+Padding mode: NOTSET
+Pre-padding: (0, 0)
+Post-padding: (0, 0)
+[03-06-2026 22:13:38] Registering layer: ConvTranspose_48 for ONNX node: ConvTranspose_48
+[03-06-2026 22:13:38] Registering tensor: x for ONNX tensor: x
+[03-06-2026 22:13:38] ConvTranspose_48 [ConvTranspose] outputs: [x -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_49 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_212
+[03-06-2026 22:13:38] Searching for input: proj_c3.weight
+[03-06-2026 22:13:38] Conv_49 [Conv] inputs: [onnx::Conv_212 -> (1, 256, 32, 64)[FLOAT]], [proj_c3.weight -> (128, 256, 1, 1)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 256, 32, 64)
+[03-06-2026 22:13:38] Registering layer: Conv_49 for ONNX node: Conv_49
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (1, 1), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 32, 64)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_233 for ONNX tensor: onnx::Add_233
+[03-06-2026 22:13:38] Conv_49 [Conv] outputs: [onnx::Add_233 -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_50 [Add]
+[03-06-2026 22:13:38] Searching for input: x
+[03-06-2026 22:13:38] Searching for input: onnx::Add_233
+[03-06-2026 22:13:38] Add_50 [Add] inputs: [x -> (1, 128, 32, 64)[FLOAT]], [onnx::Add_233 -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_50 for ONNX node: Add_50
+[03-06-2026 22:13:38] Registering tensor: input.160 for ONNX tensor: input.160
+[03-06-2026 22:13:38] Add_50 [Add] outputs: [input.160 -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: BatchNormalization_51 [BatchNormalization]
+[03-06-2026 22:13:38] Searching for input: input.160
+[03-06-2026 22:13:38] Searching for input: fuse_bn.0.weight
+[03-06-2026 22:13:38] Searching for input: fuse_bn.0.bias
+[03-06-2026 22:13:38] Searching for input: fuse_bn.0.running_mean
+[03-06-2026 22:13:38] Searching for input: fuse_bn.0.running_var
+[03-06-2026 22:13:38] BatchNormalization_51 [BatchNormalization] inputs: [input.160 -> (1, 128, 32, 64)[FLOAT]], [fuse_bn.0.weight -> (128)[FLOAT]], [fuse_bn.0.bias -> (128)[FLOAT]], [fuse_bn.0.running_mean -> (128)[FLOAT]], [fuse_bn.0.running_var -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: BatchNormalization_51 for ONNX node: BatchNormalization_51
+[03-06-2026 22:13:38] Registering tensor: input.164 for ONNX tensor: input.164
+[03-06-2026 22:13:38] BatchNormalization_51 [BatchNormalization] outputs: [input.164 -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_52 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.164
+[03-06-2026 22:13:38] Relu_52 [Relu] inputs: [input.164 -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_52 for ONNX node: Relu_52
+[03-06-2026 22:13:38] Registering tensor: onnx::ConvTranspose_236 for ONNX tensor: onnx::ConvTranspose_236
+[03-06-2026 22:13:38] Relu_52 [Relu] outputs: [onnx::ConvTranspose_236 -> (1, 128, 32, 64)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: ConvTranspose_53 [ConvTranspose]
+[03-06-2026 22:13:38] Searching for input: onnx::ConvTranspose_236
+[03-06-2026 22:13:38] Searching for input: up2.weight
+[03-06-2026 22:13:38] ConvTranspose_53 [ConvTranspose] inputs: [onnx::ConvTranspose_236 -> (1, 128, 32, 64)[FLOAT]], [up2.weight -> (128, 128, 2, 2)[FLOAT]], 
+[03-06-2026 22:13:38] Running deconvolution with: 
+Padding mode: NOTSET
+Pre-padding: (0, 0)
+Post-padding: (0, 0)
+[03-06-2026 22:13:38] Registering layer: ConvTranspose_53 for ONNX node: ConvTranspose_53
+[03-06-2026 22:13:38] Registering tensor: x.3 for ONNX tensor: x.3
+[03-06-2026 22:13:38] ConvTranspose_53 [ConvTranspose] outputs: [x.3 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_54 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_196
+[03-06-2026 22:13:38] Searching for input: proj_c2.weight
+[03-06-2026 22:13:38] Conv_54 [Conv] inputs: [onnx::Conv_196 -> (1, 128, 64, 128)[FLOAT]], [proj_c2.weight -> (128, 128, 1, 1)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering layer: Conv_54 for ONNX node: Conv_54
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (1, 1), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 64, 128)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_238 for ONNX tensor: onnx::Add_238
+[03-06-2026 22:13:38] Conv_54 [Conv] outputs: [onnx::Add_238 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_55 [Add]
+[03-06-2026 22:13:38] Searching for input: x.3
+[03-06-2026 22:13:38] Searching for input: onnx::Add_238
+[03-06-2026 22:13:38] Add_55 [Add] inputs: [x.3 -> (1, 128, 64, 128)[FLOAT]], [onnx::Add_238 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_55 for ONNX node: Add_55
+[03-06-2026 22:13:38] Registering tensor: input.168 for ONNX tensor: input.168
+[03-06-2026 22:13:38] Add_55 [Add] outputs: [input.168 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: BatchNormalization_56 [BatchNormalization]
+[03-06-2026 22:13:38] Searching for input: input.168
+[03-06-2026 22:13:38] Searching for input: fuse_bn.1.weight
+[03-06-2026 22:13:38] Searching for input: fuse_bn.1.bias
+[03-06-2026 22:13:38] Searching for input: fuse_bn.1.running_mean
+[03-06-2026 22:13:38] Searching for input: fuse_bn.1.running_var
+[03-06-2026 22:13:38] BatchNormalization_56 [BatchNormalization] inputs: [input.168 -> (1, 128, 64, 128)[FLOAT]], [fuse_bn.1.weight -> (128)[FLOAT]], [fuse_bn.1.bias -> (128)[FLOAT]], [fuse_bn.1.running_mean -> (128)[FLOAT]], [fuse_bn.1.running_var -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: BatchNormalization_56 for ONNX node: BatchNormalization_56
+[03-06-2026 22:13:38] Registering tensor: input.172 for ONNX tensor: input.172
+[03-06-2026 22:13:38] BatchNormalization_56 [BatchNormalization] outputs: [input.172 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_57 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.172
+[03-06-2026 22:13:38] Relu_57 [Relu] inputs: [input.172 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_57 for ONNX node: Relu_57
+[03-06-2026 22:13:38] Registering tensor: onnx::ConvTranspose_241 for ONNX tensor: onnx::ConvTranspose_241
+[03-06-2026 22:13:38] Relu_57 [Relu] outputs: [onnx::ConvTranspose_241 -> (1, 128, 64, 128)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: ConvTranspose_58 [ConvTranspose]
+[03-06-2026 22:13:38] Searching for input: onnx::ConvTranspose_241
+[03-06-2026 22:13:38] Searching for input: up3.weight
+[03-06-2026 22:13:38] ConvTranspose_58 [ConvTranspose] inputs: [onnx::ConvTranspose_241 -> (1, 128, 64, 128)[FLOAT]], [up3.weight -> (128, 128, 2, 2)[FLOAT]], 
+[03-06-2026 22:13:38] Running deconvolution with: 
+Padding mode: NOTSET
+Pre-padding: (0, 0)
+Post-padding: (0, 0)
+[03-06-2026 22:13:38] Registering layer: ConvTranspose_58 for ONNX node: ConvTranspose_58
+[03-06-2026 22:13:38] Registering tensor: x.7 for ONNX tensor: x.7
+[03-06-2026 22:13:38] ConvTranspose_58 [ConvTranspose] outputs: [x.7 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_59 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_180
+[03-06-2026 22:13:38] Searching for input: proj_c1.weight
+[03-06-2026 22:13:38] Conv_59 [Conv] inputs: [onnx::Conv_180 -> (1, 64, 128, 256)[FLOAT]], [proj_c1.weight -> (128, 64, 1, 1)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 128, 256)
+[03-06-2026 22:13:38] Registering layer: Conv_59 for ONNX node: Conv_59
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (1, 1), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 128, 256)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_243 for ONNX tensor: onnx::Add_243
+[03-06-2026 22:13:38] Conv_59 [Conv] outputs: [onnx::Add_243 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_60 [Add]
+[03-06-2026 22:13:38] Searching for input: x.7
+[03-06-2026 22:13:38] Searching for input: onnx::Add_243
+[03-06-2026 22:13:38] Add_60 [Add] inputs: [x.7 -> (1, 128, 128, 256)[FLOAT]], [onnx::Add_243 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_60 for ONNX node: Add_60
+[03-06-2026 22:13:38] Registering tensor: input.176 for ONNX tensor: input.176
+[03-06-2026 22:13:38] Add_60 [Add] outputs: [input.176 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: BatchNormalization_61 [BatchNormalization]
+[03-06-2026 22:13:38] Searching for input: input.176
+[03-06-2026 22:13:38] Searching for input: fuse_bn.2.weight
+[03-06-2026 22:13:38] Searching for input: fuse_bn.2.bias
+[03-06-2026 22:13:38] Searching for input: fuse_bn.2.running_mean
+[03-06-2026 22:13:38] Searching for input: fuse_bn.2.running_var
+[03-06-2026 22:13:38] BatchNormalization_61 [BatchNormalization] inputs: [input.176 -> (1, 128, 128, 256)[FLOAT]], [fuse_bn.2.weight -> (128)[FLOAT]], [fuse_bn.2.bias -> (128)[FLOAT]], [fuse_bn.2.running_mean -> (128)[FLOAT]], [fuse_bn.2.running_var -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: BatchNormalization_61 for ONNX node: BatchNormalization_61
+[03-06-2026 22:13:38] Registering tensor: input.180 for ONNX tensor: input.180
+[03-06-2026 22:13:38] BatchNormalization_61 [BatchNormalization] outputs: [input.180 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_62 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.180
+[03-06-2026 22:13:38] Relu_62 [Relu] inputs: [input.180 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_62 for ONNX node: Relu_62
+[03-06-2026 22:13:38] Registering tensor: onnx::ConvTranspose_246 for ONNX tensor: onnx::ConvTranspose_246
+[03-06-2026 22:13:38] Relu_62 [Relu] outputs: [onnx::ConvTranspose_246 -> (1, 128, 128, 256)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: ConvTranspose_63 [ConvTranspose]
+[03-06-2026 22:13:38] Searching for input: onnx::ConvTranspose_246
+[03-06-2026 22:13:38] Searching for input: up4.weight
+[03-06-2026 22:13:38] ConvTranspose_63 [ConvTranspose] inputs: [onnx::ConvTranspose_246 -> (1, 128, 128, 256)[FLOAT]], [up4.weight -> (128, 128, 2, 2)[FLOAT]], 
+[03-06-2026 22:13:38] Running deconvolution with: 
+Padding mode: NOTSET
+Pre-padding: (0, 0)
+Post-padding: (0, 0)
+[03-06-2026 22:13:38] Registering layer: ConvTranspose_63 for ONNX node: ConvTranspose_63
+[03-06-2026 22:13:38] Registering tensor: x.11 for ONNX tensor: x.11
+[03-06-2026 22:13:38] ConvTranspose_63 [ConvTranspose] outputs: [x.11 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_64 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::MaxPool_165
+[03-06-2026 22:13:38] Searching for input: proj_c0.weight
+[03-06-2026 22:13:38] Conv_64 [Conv] inputs: [onnx::MaxPool_165 -> (1, 64, 256, 512)[FLOAT]], [proj_c0.weight -> (128, 64, 1, 1)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 64, 256, 512)
+[03-06-2026 22:13:38] Registering layer: Conv_64 for ONNX node: Conv_64
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (1, 1), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 128
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 128, 256, 512)
+[03-06-2026 22:13:38] Registering tensor: onnx::Add_248 for ONNX tensor: onnx::Add_248
+[03-06-2026 22:13:38] Conv_64 [Conv] outputs: [onnx::Add_248 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Add_65 [Add]
+[03-06-2026 22:13:38] Searching for input: x.11
+[03-06-2026 22:13:38] Searching for input: onnx::Add_248
+[03-06-2026 22:13:38] Add_65 [Add] inputs: [x.11 -> (1, 128, 256, 512)[FLOAT]], [onnx::Add_248 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Add_65 for ONNX node: Add_65
+[03-06-2026 22:13:38] Registering tensor: input.184 for ONNX tensor: input.184
+[03-06-2026 22:13:38] Add_65 [Add] outputs: [input.184 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: BatchNormalization_66 [BatchNormalization]
+[03-06-2026 22:13:38] Searching for input: input.184
+[03-06-2026 22:13:38] Searching for input: fuse_bn.3.weight
+[03-06-2026 22:13:38] Searching for input: fuse_bn.3.bias
+[03-06-2026 22:13:38] Searching for input: fuse_bn.3.running_mean
+[03-06-2026 22:13:38] Searching for input: fuse_bn.3.running_var
+[03-06-2026 22:13:38] BatchNormalization_66 [BatchNormalization] inputs: [input.184 -> (1, 128, 256, 512)[FLOAT]], [fuse_bn.3.weight -> (128)[FLOAT]], [fuse_bn.3.bias -> (128)[FLOAT]], [fuse_bn.3.running_mean -> (128)[FLOAT]], [fuse_bn.3.running_var -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: BatchNormalization_66 for ONNX node: BatchNormalization_66
+[03-06-2026 22:13:38] Registering tensor: input.188 for ONNX tensor: input.188
+[03-06-2026 22:13:38] BatchNormalization_66 [BatchNormalization] outputs: [input.188 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_67 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.188
+[03-06-2026 22:13:38] Relu_67 [Relu] inputs: [input.188 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_67 for ONNX node: Relu_67
+[03-06-2026 22:13:38] Registering tensor: onnx::ConvTranspose_251 for ONNX tensor: onnx::ConvTranspose_251
+[03-06-2026 22:13:38] Relu_67 [Relu] outputs: [onnx::ConvTranspose_251 -> (1, 128, 256, 512)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: ConvTranspose_68 [ConvTranspose]
+[03-06-2026 22:13:38] Searching for input: onnx::ConvTranspose_251
+[03-06-2026 22:13:38] Searching for input: up5.weight
+[03-06-2026 22:13:38] ConvTranspose_68 [ConvTranspose] inputs: [onnx::ConvTranspose_251 -> (1, 128, 256, 512)[FLOAT]], [up5.weight -> (128, 128, 2, 2)[FLOAT]], 
+[03-06-2026 22:13:38] Running deconvolution with: 
+Padding mode: NOTSET
+Pre-padding: (0, 0)
+Post-padding: (0, 0)
+[03-06-2026 22:13:38] Registering layer: ConvTranspose_68 for ONNX node: ConvTranspose_68
+[03-06-2026 22:13:38] Registering tensor: input.192 for ONNX tensor: input.192
+[03-06-2026 22:13:38] ConvTranspose_68 [ConvTranspose] outputs: [input.192 -> (1, 128, 512, 1024)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: BatchNormalization_69 [BatchNormalization]
+[03-06-2026 22:13:38] Searching for input: input.192
+[03-06-2026 22:13:38] Searching for input: fuse_bn.4.weight
+[03-06-2026 22:13:38] Searching for input: fuse_bn.4.bias
+[03-06-2026 22:13:38] Searching for input: fuse_bn.4.running_mean
+[03-06-2026 22:13:38] Searching for input: fuse_bn.4.running_var
+[03-06-2026 22:13:38] BatchNormalization_69 [BatchNormalization] inputs: [input.192 -> (1, 128, 512, 1024)[FLOAT]], [fuse_bn.4.weight -> (128)[FLOAT]], [fuse_bn.4.bias -> (128)[FLOAT]], [fuse_bn.4.running_mean -> (128)[FLOAT]], [fuse_bn.4.running_var -> (128)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: BatchNormalization_69 for ONNX node: BatchNormalization_69
+[03-06-2026 22:13:38] Registering tensor: input.196 for ONNX tensor: input.196
+[03-06-2026 22:13:38] BatchNormalization_69 [BatchNormalization] outputs: [input.196 -> (1, 128, 512, 1024)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Relu_70 [Relu]
+[03-06-2026 22:13:38] Searching for input: input.196
+[03-06-2026 22:13:38] Relu_70 [Relu] inputs: [input.196 -> (1, 128, 512, 1024)[FLOAT]], 
+[03-06-2026 22:13:38] Registering layer: Relu_70 for ONNX node: Relu_70
+[03-06-2026 22:13:38] Registering tensor: onnx::Conv_254 for ONNX tensor: onnx::Conv_254
+[03-06-2026 22:13:38] Relu_70 [Relu] outputs: [onnx::Conv_254 -> (1, 128, 512, 1024)[FLOAT]], 
+[03-06-2026 22:13:38] Parsing node: Conv_71 [Conv]
+[03-06-2026 22:13:38] Searching for input: onnx::Conv_254
+[03-06-2026 22:13:38] Searching for input: head.weight
+[03-06-2026 22:13:38] Searching for input: head.bias
+[03-06-2026 22:13:38] Conv_71 [Conv] inputs: [onnx::Conv_254 -> (1, 128, 512, 1024)[FLOAT]], [head.weight -> (2, 128, 1, 1)[FLOAT]], [head.bias -> (2)[FLOAT]], 
+[03-06-2026 22:13:38] Convolution input dimensions: (1, 128, 512, 1024)
+[03-06-2026 22:13:38] Registering layer: Conv_71 for ONNX node: Conv_71
+[03-06-2026 22:13:38] Using kernel: (1, 1), strides: (1, 1), prepadding: (0, 0), postpadding: (0, 0), dilations: (1, 1), numOutputs: 2
+[03-06-2026 22:13:38] Convolution output dimensions: (1, 2, 512, 1024)
+[03-06-2026 22:13:38] Registering tensor: logits_9 for ONNX tensor: logits
+[03-06-2026 22:13:38] Conv_71 [Conv] outputs: [logits -> (1, 2, 512, 1024)[FLOAT]], 
+[03-06-2026 22:13:38] Marking logits_9 as output: logits
+[03-06-2026 22:13:38] DNNGenerator: Input "input": 1x3x512x1024
+[03-06-2026 22:13:38] DNNGenerator: Output "logits": 1x2x512x1024
+[03-06-2026 22:13:38] DNNGenerator: Precision is not specified for the DLA model. Setting precision to FP16.
+[03-06-2026 22:13:38] Original: 72 layers
+[03-06-2026 22:13:38] After dead-layer removal: 72 layers
+[03-06-2026 22:13:38] Graph construction completed in 0.00193462 seconds.
+[03-06-2026 22:13:38] ---------- Layers Running on DLA ----------
+[03-06-2026 22:13:38] [DlaLayer] Conv_0
+[03-06-2026 22:13:38] [DlaLayer] Relu_1
+[03-06-2026 22:13:38] [DlaLayer] MaxPool_2
+[03-06-2026 22:13:38] [DlaLayer] Conv_3
+[03-06-2026 22:13:38] [DlaLayer] Relu_4
+[03-06-2026 22:13:38] [DlaLayer] Conv_5
+[03-06-2026 22:13:38] [DlaLayer] Add_6
+[03-06-2026 22:13:38] [DlaLayer] Relu_7
+[03-06-2026 22:13:38] [DlaLayer] Conv_8
+[03-06-2026 22:13:38] [DlaLayer] Relu_9
+[03-06-2026 22:13:38] [DlaLayer] Conv_10
+[03-06-2026 22:13:38] [DlaLayer] Add_11
+[03-06-2026 22:13:38] [DlaLayer] Relu_12
+[03-06-2026 22:13:38] [DlaLayer] Conv_13
+[03-06-2026 22:13:38] [DlaLayer] Relu_14
+[03-06-2026 22:13:38] [DlaLayer] Conv_15
+[03-06-2026 22:13:38] [DlaLayer] Conv_16
+[03-06-2026 22:13:38] [DlaLayer] Add_17
+[03-06-2026 22:13:38] [DlaLayer] Relu_18
+[03-06-2026 22:13:38] [DlaLayer] Conv_19
+[03-06-2026 22:13:38] [DlaLayer] Relu_20
+[03-06-2026 22:13:38] [DlaLayer] Conv_21
+[03-06-2026 22:13:38] [DlaLayer] Add_22
+[03-06-2026 22:13:38] [DlaLayer] Relu_23
+[03-06-2026 22:13:38] [DlaLayer] Conv_24
+[03-06-2026 22:13:38] [DlaLayer] Relu_25
+[03-06-2026 22:13:38] [DlaLayer] Conv_26
+[03-06-2026 22:13:38] [DlaLayer] Conv_27
+[03-06-2026 22:13:38] [DlaLayer] Add_28
+[03-06-2026 22:13:38] [DlaLayer] Relu_29
+[03-06-2026 22:13:38] [DlaLayer] Conv_30
+[03-06-2026 22:13:38] [DlaLayer] Relu_31
+[03-06-2026 22:13:38] [DlaLayer] Conv_32
+[03-06-2026 22:13:38] [DlaLayer] Add_33
+[03-06-2026 22:13:38] [DlaLayer] Relu_34
+[03-06-2026 22:13:38] [DlaLayer] Conv_35
+[03-06-2026 22:13:38] [DlaLayer] Relu_36
+[03-06-2026 22:13:38] [DlaLayer] Conv_37
+[03-06-2026 22:13:38] [DlaLayer] Conv_38
+[03-06-2026 22:13:38] [DlaLayer] Add_39
+[03-06-2026 22:13:38] [DlaLayer] Relu_40
+[03-06-2026 22:13:38] [DlaLayer] Conv_41
+[03-06-2026 22:13:38] [DlaLayer] Relu_42
+[03-06-2026 22:13:38] [DlaLayer] Conv_43
+[03-06-2026 22:13:38] [DlaLayer] Add_44
+[03-06-2026 22:13:38] [DlaLayer] Relu_45
+[03-06-2026 22:13:38] [DlaLayer] Conv_46
+[03-06-2026 22:13:38] [DlaLayer] Relu_47
+[03-06-2026 22:13:38] [DlaLayer] ConvTranspose_48
+[03-06-2026 22:13:38] [DlaLayer] Conv_49
+[03-06-2026 22:13:38] [DlaLayer] Add_50
+[03-06-2026 22:13:38] [DlaLayer] BatchNormalization_51
+[03-06-2026 22:13:38] [DlaLayer] Relu_52
+[03-06-2026 22:13:38] [DlaLayer] ConvTranspose_53
+[03-06-2026 22:13:38] [DlaLayer] Conv_54
+[03-06-2026 22:13:38] [DlaLayer] Add_55
+[03-06-2026 22:13:38] [DlaLayer] BatchNormalization_56
+[03-06-2026 22:13:38] [DlaLayer] Relu_57
+[03-06-2026 22:13:38] [DlaLayer] ConvTranspose_58
+[03-06-2026 22:13:38] [DlaLayer] Conv_59
+[03-06-2026 22:13:38] [DlaLayer] Add_60
+[03-06-2026 22:13:38] [DlaLayer] BatchNormalization_61
+[03-06-2026 22:13:38] [DlaLayer] Relu_62
+[03-06-2026 22:13:38] [DlaLayer] ConvTranspose_63
+[03-06-2026 22:13:38] [DlaLayer] Conv_64
+[03-06-2026 22:13:38] [DlaLayer] Add_65
+[03-06-2026 22:13:38] [DlaLayer] BatchNormalization_66
+[03-06-2026 22:13:38] [DlaLayer] Relu_67
+[03-06-2026 22:13:38] [DlaLayer] ConvTranspose_68
+[03-06-2026 22:13:38] [DlaLayer] BatchNormalization_69
+[03-06-2026 22:13:38] [DlaLayer] Relu_70
+[03-06-2026 22:13:38] [DlaLayer] Conv_71
+[03-06-2026 22:13:38] ---------- Layers Running on GPU ----------
+[03-06-2026 22:13:38] No layer is running on GPU
+[03-06-2026 22:13:38] After Myelin optimization: 72 layers
+[03-06-2026 22:13:39] 	DLA Memory Pool Sizes: Managed SRAM = 1 MiB,	Local DRAM = 1024 MiB,	Global DRAM = 512 MiB
+[03-06-2026 22:13:45] {ForeignNode[Conv_0...Conv_71]} successfully offloaded to DLA.
+	Memory consumption: Managed SRAM = 1 MiB,	Local DRAM = 512 MiB,	Global DRAM = 64 MiB
+[03-06-2026 22:13:45] DLA Memory Consumption Summary:
+[03-06-2026 22:13:45] 	Number of DLA node candidates offloaded : 1 out of 1
+[03-06-2026 22:13:45] 	Total memory required by accepted candidates : Managed SRAM = 1 MiB,	Local DRAM = 512 MiB,	Global DRAM = 64 MiB
+[03-06-2026 22:13:45] After DLA optimization: 1 layers
+[03-06-2026 22:13:45] Applying ScaleNodes fusions.
+[03-06-2026 22:13:45] After scale fusion: 1 layers
+[03-06-2026 22:13:45] After dupe layer removal: 1 layers
+[03-06-2026 22:13:45] After final dead-layer removal: 1 layers
+[03-06-2026 22:13:45] After tensor merging: 1 layers
+[03-06-2026 22:13:45] After vertical fusions: 1 layers
+[03-06-2026 22:13:45] After dupe layer removal: 1 layers
+[03-06-2026 22:13:45] After final dead-layer removal: 1 layers
+[03-06-2026 22:13:45] After tensor merging: 1 layers
+[03-06-2026 22:13:45] After slice removal: 1 layers
+[03-06-2026 22:13:45] After concat removal: 1 layers
+[03-06-2026 22:13:45] Trying to split Reshape and strided tensor
+[03-06-2026 22:13:45] Graph optimization time: 6.77008 seconds.
+[03-06-2026 22:13:45] Building graph using backend strategy 2
+[03-06-2026 22:13:45] Local timing cache in use. Profiling results in this builder pass will not be stored.
+[03-06-2026 22:13:45] Constructing optimization profile number 0 [1/1].
+[03-06-2026 22:13:45] Applying generic optimizations to the graph for inference.
+[03-06-2026 22:13:45] Reserving memory for host IO tensors. Host: 0 bytes
+[03-06-2026 22:13:45] =============== Computing costs for {ForeignNode[Conv_0...Conv_71]}
+[03-06-2026 22:13:45] *************** Autotuning format combination: Half(1572864,524288,1024,1) -> Half(1048576,524288,1024,1) ***************
+[03-06-2026 22:13:45] --------------- Timing Runner: {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016])
+[03-06-2026 22:13:46] Tactic: 0x0000000000000003 Time: 139.471
+[03-06-2026 22:13:46] {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016]) profiling completed in 1.70744 seconds. Fastest Tactic: 0x0000000000000003 Time: 139.471
+[03-06-2026 22:13:46] >>>>>>>>>>>>>>> Chose Runner Type: DLA Tactic: 0x0000000000000003
+[03-06-2026 22:13:46] *************** Autotuning format combination: Half(1572864,524288,1024,1) -> Half(524288,524288:16,1024,1) ***************
+[03-06-2026 22:13:46] --------------- Timing Runner: {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016])
+[03-06-2026 22:13:48] Tactic: 0x0000000000000003 Time: 139.021
+[03-06-2026 22:13:48] {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016]) profiling completed in 1.60953 seconds. Fastest Tactic: 0x0000000000000003 Time: 139.021
+[03-06-2026 22:13:48] >>>>>>>>>>>>>>> Chose Runner Type: DLA Tactic: 0x0000000000000003
+[03-06-2026 22:13:48] *************** Autotuning format combination: Half(524288,1:4,1024,1) -> Half(1048576,524288,1024,1) ***************
+[03-06-2026 22:13:48] --------------- Timing Runner: {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016])
+[03-06-2026 22:13:50] Tactic: 0x0000000000000003 Time: 139.118
+[03-06-2026 22:13:50] {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016]) profiling completed in 1.60086 seconds. Fastest Tactic: 0x0000000000000003 Time: 139.118
+[03-06-2026 22:13:50] >>>>>>>>>>>>>>> Chose Runner Type: DLA Tactic: 0x0000000000000003
+[03-06-2026 22:13:50] *************** Autotuning format combination: Half(524288,1:4,1024,1) -> Half(524288,524288:16,1024,1) ***************
+[03-06-2026 22:13:50] --------------- Timing Runner: {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016])
+[03-06-2026 22:13:51] Tactic: 0x0000000000000003 Time: 138.658
+[03-06-2026 22:13:51] {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016]) profiling completed in 1.58913 seconds. Fastest Tactic: 0x0000000000000003 Time: 138.658
+[03-06-2026 22:13:51] >>>>>>>>>>>>>>> Chose Runner Type: DLA Tactic: 0x0000000000000003
+[03-06-2026 22:13:51] *************** Autotuning format combination: Half(524288,524288:16,1024,1) -> Half(1048576,524288,1024,1) ***************
+[03-06-2026 22:13:51] --------------- Timing Runner: {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016])
+[03-06-2026 22:13:53] Tactic: 0x0000000000000003 Time: 138.465
+[03-06-2026 22:13:53] {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016]) profiling completed in 1.5836 seconds. Fastest Tactic: 0x0000000000000003 Time: 138.465
+[03-06-2026 22:13:53] >>>>>>>>>>>>>>> Chose Runner Type: DLA Tactic: 0x0000000000000003
+[03-06-2026 22:13:53] *************** Autotuning format combination: Half(524288,524288:16,1024,1) -> Half(524288,524288:16,1024,1) ***************
+[03-06-2026 22:13:53] --------------- Timing Runner: {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016])
+[03-06-2026 22:13:54] Tactic: 0x0000000000000003 Time: 138.059
+[03-06-2026 22:13:54] {ForeignNode[Conv_0...Conv_71]} (DLA[0x80000016]) profiling completed in 1.58857 seconds. Fastest Tactic: 0x0000000000000003 Time: 138.059
+[03-06-2026 22:13:54] >>>>>>>>>>>>>>> Chose Runner Type: DLA Tactic: 0x0000000000000003
+[03-06-2026 22:13:54] =============== Computing reformatting costs
+[03-06-2026 22:13:54] =============== Computing reformatting costs: 
+[03-06-2026 22:13:54] *************** Autotuning Reformat: Half(524288,524288:16,1024,1) -> Half(1572864,524288,1024,1) ***************
+[03-06-2026 22:13:54] --------------- Timing Runner: Optimizer Reformat(input -> <out>) (Reformat[0x80000006])
+[03-06-2026 22:13:54] Tactic: 0x00000000000003e8 Time: 0.289323
+[03-06-2026 22:13:54] Fast skip Tactic:0x00000000000003ea which exceed time limit during pre-run
+[03-06-2026 22:13:54] Tactic: 0x00000000000003ea Time: 1.65011
+[03-06-2026 22:13:54] Tactic: 0x0000000000000000 Time: 0.288448
+[03-06-2026 22:13:54] Optimizer Reformat(input -> <out>) (Reformat[0x80000006]) profiling completed in 0.0140648 seconds. Fastest Tactic: 0x0000000000000000 Time: 0.288448
+[03-06-2026 22:13:54] *************** Autotuning Reformat: Half(524288,524288:16,1024,1) -> Half(524288,1:4,1024,1) ***************
+[03-06-2026 22:13:54] --------------- Timing Runner: Optimizer Reformat(input -> <out>) (Reformat[0x80000006])
+[03-06-2026 22:13:54] Tactic: 0x00000000000003e8 Time: 0.211035
+[03-06-2026 22:13:54] Tactic: 0x00000000000003ea Time: 0.129849
+[03-06-2026 22:13:54] Tactic: 0x0000000000000000 Time: 0.211904
+[03-06-2026 22:13:54] Optimizer Reformat(input -> <out>) (Reformat[0x80000006]) profiling completed in 0.0114258 seconds. Fastest Tactic: 0x00000000000003ea Time: 0.129849
+[03-06-2026 22:13:54] =============== Computing reformatting costs
+[03-06-2026 22:13:54] =============== Computing reformatting costs: 
+[03-06-2026 22:13:54] *************** Autotuning Reformat: Half(1048576,524288,1024,1) -> Half(524288,524288:16,1024,1) ***************
+[03-06-2026 22:13:54] --------------- Timing Runner: Optimizer Reformat(<in> -> logits) (Reformat[0x80000006])
+[03-06-2026 22:13:54] Tactic: 0x00000000000003e8 Time: 2.91321
+[03-06-2026 22:13:54] Tactic: 0x00000000000003ea Time: 0.171259
+[03-06-2026 22:13:54] Fast skip Tactic:0x0000000000000000 which exceed time limit during pre-run
+[03-06-2026 22:13:54] Tactic: 0x0000000000000000 Time: 2.87251
+[03-06-2026 22:13:54] Optimizer Reformat(<in> -> logits) (Reformat[0x80000006]) profiling completed in 0.0237081 seconds. Fastest Tactic: 0x00000000000003ea Time: 0.171259
+[03-06-2026 22:13:54] Formats and tactics selection completed in 9.73219 seconds.
+[03-06-2026 22:13:54] After reformat layers: 1 layers
+[03-06-2026 22:13:54] Total number of blocks in pre-optimized block assignment: 1
+[03-06-2026 22:13:54] Detected 1 inputs and 1 output network tensors.
+[03-06-2026 22:13:55] {ForeignNode[Conv_0...Conv_71]}: DLA Network Layer Information:
+Layer(CONVOLUTION): Conv_0, Precision: Half, input'[Half([1,3,512,1024])] -> input.4'[Half([1,64,256,512])]
+Layer(ACTIVATION): Relu_1, Precision: Half, input.4'[Half([1,64,256,512])] -> onnx::MaxPool_165'[Half([1,64,256,512])]
+Layer(POOLING): MaxPool_2, Precision: Half, onnx::MaxPool_165'[Half([1,64,256,512])] -> input.8'[Half([1,64,128,256])]
+Layer(CONVOLUTION): Conv_3, Precision: Half, input.8'[Half([1,64,128,256])] -> input.16'[Half([1,64,128,256])]
+Layer(ACTIVATION): Relu_4, Precision: Half, input.16'[Half([1,64,128,256])] -> onnx::Conv_169'[Half([1,64,128,256])]
+Layer(CONVOLUTION): Conv_5, Precision: Half, onnx::Conv_169'[Half([1,64,128,256])] -> onnx::Add_262'[Half([1,64,128,256])]
+Layer(ELEMENTWISE): Add_6, Precision: Half, onnx::Add_262'[Half([1,64,128,256])], input.8'[Half([1,64,128,256])] -> input.24'[Half([1,64,128,256])]
+Layer(ACTIVATION): Relu_7, Precision: Half, input.24'[Half([1,64,128,256])] -> onnx::Conv_173'[Half([1,64,128,256])]
+Layer(CONVOLUTION): Conv_8, Precision: Half, onnx::Conv_173'[Half([1,64,128,256])] -> input.32'[Half([1,64,128,256])]
+Layer(ACTIVATION): Relu_9, Precision: Half, input.32'[Half([1,64,128,256])] -> onnx::Conv_176'[Half([1,64,128,256])]
+Layer(CONVOLUTION): Conv_10, Precision: Half, onnx::Conv_176'[Half([1,64,128,256])] -> onnx::Add_268'[Half([1,64,128,256])]
+Layer(ELEMENTWISE): Add_11, Precision: Half, onnx::Add_268'[Half([1,64,128,256])], onnx::Conv_173'[Half([1,64,128,256])] -> input.40'[Half([1,64,128,256])]
+Layer(ACTIVATION): Relu_12, Precision: Half, input.40'[Half([1,64,128,256])] -> onnx::Conv_180'[Half([1,64,128,256])]
+Layer(CONVOLUTION): Conv_13, Precision: Half, onnx::Conv_180'[Half([1,64,128,256])] -> input.48'[Half([1,128,64,128])]
+Layer(ACTIVATION): Relu_14, Precision: Half, input.48'[Half([1,128,64,128])] -> onnx::Conv_183'[Half([1,128,64,128])]
+Layer(CONVOLUTION): Conv_15, Precision: Half, onnx::Conv_183'[Half([1,128,64,128])] -> onnx::Add_274'[Half([1,128,64,128])]
+Layer(CONVOLUTION): Conv_16, Precision: Half, onnx::Conv_180'[Half([1,64,128,256])] -> onnx::Add_277'[Half([1,128,64,128])]
+Layer(ELEMENTWISE): Add_17, Precision: Half, onnx::Add_274'[Half([1,128,64,128])], onnx::Add_277'[Half([1,128,64,128])] -> input.60'[Half([1,128,64,128])]
+Layer(ACTIVATION): Relu_18, Precision: Half, input.60'[Half([1,128,64,128])] -> onnx::Conv_189'[Half([1,128,64,128])]
+Layer(CONVOLUTION): Conv_19, Precision: Half, onnx::Conv_189'[Half([1,128,64,128])] -> input.68'[Half([1,128,64,128])]
+Layer(ACTIVATION): Relu_20, Precision: Half, input.68'[Half([1,128,64,128])] -> onnx::Conv_192'[Half([1,128,64,128])]
+Layer(CONVOLUTION): Conv_21, Precision: Half, onnx::Conv_192'[Half([1,128,64,128])] -> onnx::Add_283'[Half([1,128,64,128])]
+Layer(ELEMENTWISE): Add_22, Precision: Half, onnx::Add_283'[Half([1,128,64,128])], onnx::Conv_189'[Half([1,128,64,128])] -> input.76'[Half([1,128,64,128])]
+Layer(ACTIVATION): Relu_23, Precision: Half, input.76'[Half([1,128,64,128])] -> onnx::Conv_196'[Half([1,128,64,128])]
+Layer(CONVOLUTION): Conv_24, Precision: Half, onnx::Conv_196'[Half([1,128,64,128])] -> input.84'[Half([1,256,32,64])]
+Layer(ACTIVATION): Relu_25, Precision: Half, input.84'[Half([1,256,32,64])] -> onnx::Conv_199'[Half([1,256,32,64])]
+Layer(CONVOLUTION): Conv_26, Precision: Half, onnx::Conv_199'[Half([1,256,32,64])] -> onnx::Add_289'[Half([1,256,32,64])]
+Layer(CONVOLUTION): Conv_27, Precision: Half, onnx::Conv_196'[Half([1,128,64,128])] -> onnx::Add_292'[Half([1,256,32,64])]
+Layer(ELEMENTWISE): Add_28, Precision: Half, onnx::Add_289'[Half([1,256,32,64])], onnx::Add_292'[Half([1,256,32,64])] -> input.96'[Half([1,256,32,64])]
+Layer(ACTIVATION): Relu_29, Precision: Half, input.96'[Half([1,256,32,64])] -> onnx::Conv_205'[Half([1,256,32,64])]
+Layer(CONVOLUTION): Conv_30, Precision: Half, onnx::Conv_205'[Half([1,256,32,64])] -> input.104'[Half([1,256,32,64])]
+Layer(ACTIVATION): Relu_31, Precision: Half, input.104'[Half([1,256,32,64])] -> onnx::Conv_208'[Half([1,256,32,64])]
+Layer(CONVOLUTION): Conv_32, Precision: Half, onnx::Conv_208'[Half([1,256,32,64])] -> onnx::Add_298'[Half([1,256,32,64])]
+Layer(ELEMENTWISE): Add_33, Precision: Half, onnx::Add_298'[Half([1,256,32,64])], onnx::Conv_205'[Half([1,256,32,64])] -> input.112'[Half([1,256,32,64])]
+Layer(ACTIVATION): Relu_34, Precision: Half, input.112'[Half([1,256,32,64])] -> onnx::Conv_212'[Half([1,256,32,64])]
+Layer(CONVOLUTION): Conv_35, Precision: Half, onnx::Conv_212'[Half([1,256,32,64])] -> input.120'[Half([1,512,16,32])]
+Layer(ACTIVATION): Relu_36, Precision: Half, input.120'[Half([1,512,16,32])] -> onnx::Conv_215'[Half([1,512,16,32])]
+Layer(CONVOLUTION): Conv_37, Precision: Half, onnx::Conv_215'[Half([1,512,16,32])] -> onnx::Add_304'[Half([1,512,16,32])]
+Layer(CONVOLUTION): Conv_38, Precision: Half, onnx::Conv_212'[Half([1,256,32,64])] -> onnx::Add_307'[Half([1,512,16,32])]
+Layer(ELEMENTWISE): Add_39, Precision: Half, onnx::Add_304'[Half([1,512,16,32])], onnx::Add_307'[Half([1,512,16,32])] -> input.132'[Half([1,512,16,32])]
+Layer(ACTIVATION): Relu_40, Precision: Half, input.132'[Half([1,512,16,32])] -> onnx::Conv_221'[Half([1,512,16,32])]
+Layer(CONVOLUTION): Conv_41, Precision: Half, onnx::Conv_221'[Half([1,512,16,32])] -> input.140'[Half([1,512,16,32])]
+Layer(ACTIVATION): Relu_42, Precision: Half, input.140'[Half([1,512,16,32])] -> onnx::Conv_224'[Half([1,512,16,32])]
+Layer(CONVOLUTION): Conv_43, Precision: Half, onnx::Conv_224'[Half([1,512,16,32])] -> onnx::Add_313'[Half([1,512,16,32])]
+Layer(ELEMENTWISE): Add_44, Precision: Half, onnx::Add_313'[Half([1,512,16,32])], onnx::Conv_221'[Half([1,512,16,32])] -> input.148'[Half([1,512,16,32])]
+Layer(ACTIVATION): Relu_45, Precision: Half, input.148'[Half([1,512,16,32])] -> onnx::Conv_228'[Half([1,512,16,32])]
+Layer(CONVOLUTION): Conv_46, Precision: Half, onnx::Conv_228'[Half([1,512,16,32])] -> input.156'[Half([1,128,16,32])]
+Layer(ACTIVATION): Relu_47, Precision: Half, input.156'[Half([1,128,16,32])] -> onnx::ConvTranspose_231'[Half([1,128,16,32])]
+Layer(DECONVOLUTION): ConvTranspose_48, Precision: Half, onnx::ConvTranspose_231'[Half([1,128,16,32])] -> x'[Half([1,128,32,64])]
+Layer(CONVOLUTION): Conv_49, Precision: Half, onnx::Conv_212'[Half([1,256,32,64])] -> onnx::Add_233'[Half([1,128,32,64])]
+Layer(ELEMENTWISE): Add_50, Precision: Half, x'[Half([1,128,32,64])], onnx::Add_233'[Half([1,128,32,64])] -> input.160'[Half([1,128,32,64])]
+Layer(SCALE): BatchNormalization_51, Precision: Half, input.160'[Half([1,128,32,64])] -> input.164'[Half([1,128,32,64])]
+Layer(ACTIVATION): Relu_52, Precision: Half, input.164'[Half([1,128,32,64])] -> onnx::ConvTranspose_236'[Half([1,128,32,64])]
+Layer(DECONVOLUTION): ConvTranspose_53, Precision: Half, onnx::ConvTranspose_236'[Half([1,128,32,64])] -> x.3'[Half([1,128,64,128])]
+Layer(CONVOLUTION): Conv_54, Precision: Half, onnx::Conv_196'[Half([1,128,64,128])] -> onnx::Add_238'[Half([1,128,64,128])]
+Layer(ELEMENTWISE): Add_55, Precision: Half, x.3'[Half([1,128,64,128])], onnx::Add_238'[Half([1,128,64,128])] -> input.168'[Half([1,128,64,128])]
+Layer(SCALE): BatchNormalization_56, Precision: Half, input.168'[Half([1,128,64,128])] -> input.172'[Half([1,128,64,128])]
+Layer(ACTIVATION): Relu_57, Precision: Half, input.172'[Half([1,128,64,128])] -> onnx::ConvTranspose_241'[Half([1,128,64,128])]
+Layer(DECONVOLUTION): ConvTranspose_58, Precision: Half, onnx::ConvTranspose_241'[Half([1,128,64,128])] -> x.7'[Half([1,128,128,256])]
+Layer(CONVOLUTION): Conv_59, Precision: Half, onnx::Conv_180'[Half([1,64,128,256])] -> onnx::Add_243'[Half([1,128,128,256])]
+Layer(ELEMENTWISE): Add_60, Precision: Half, x.7'[Half([1,128,128,256])], onnx::Add_243'[Half([1,128,128,256])] -> input.176'[Half([1,128,128,256])]
+Layer(SCALE): BatchNormalization_61, Precision: Half, input.176'[Half([1,128,128,256])] -> input.180'[Half([1,128,128,256])]
+Layer(ACTIVATION): Relu_62, Precision: Half, input.180'[Half([1,128,128,256])] -> onnx::ConvTranspose_246'[Half([1,128,128,256])]
+Layer(DECONVOLUTION): ConvTranspose_63, Precision: Half, onnx::ConvTranspose_246'[Half([1,128,128,256])] -> x.11'[Half([1,128,256,512])]
+Layer(CONVOLUTION): Conv_64, Precision: Half, onnx::MaxPool_165'[Half([1,64,256,512])] -> onnx::Add_248'[Half([1,128,256,512])]
+Layer(ELEMENTWISE): Add_65, Precision: Half, x.11'[Half([1,128,256,512])], onnx::Add_248'[Half([1,128,256,512])] -> input.184'[Half([1,128,256,512])]
+Layer(SCALE): BatchNormalization_66, Precision: Half, input.184'[Half([1,128,256,512])] -> input.188'[Half([1,128,256,512])]
+Layer(ACTIVATION): Relu_67, Precision: Half, input.188'[Half([1,128,256,512])] -> onnx::ConvTranspose_251'[Half([1,128,256,512])]
+Layer(DECONVOLUTION): ConvTranspose_68, Precision: Half, onnx::ConvTranspose_251'[Half([1,128,256,512])] -> input.192'[Half([1,128,512,1024])]
+Layer(SCALE): BatchNormalization_69, Precision: Half, input.192'[Half([1,128,512,1024])] -> input.196'[Half([1,128,512,1024])]
+Layer(ACTIVATION): Relu_70, Precision: Half, input.196'[Half([1,128,512,1024])] -> onnx::Conv_254'[Half([1,128,512,1024])]
+Layer(CONVOLUTION): Conv_71, Precision: Half, onnx::Conv_254'[Half([1,128,512,1024])] -> logits'[Half([1,2,512,1024])]
+[03-06-2026 22:13:55] Layer: {ForeignNode[Conv_0...Conv_71]} Host Persistent: 88 Device Persistent: 0 Scratch Memory: 0
+[03-06-2026 22:13:55] Skipped printing memory information for 0 layers with 0 memory size i.e. Host Persistent + Device Persistent + Scratch Memory == 0.
+[03-06-2026 22:13:55] Total Host Persistent Memory: 96
+[03-06-2026 22:13:55] Total Device Persistent Memory: 0
+[03-06-2026 22:13:55] Total Scratch Memory: 0
+[03-06-2026 22:13:55] [MemUsageStats] Peak memory usage of TRT CPU/GPU memory allocators: CPU 23 MiB, GPU 32 MiB
+[03-06-2026 22:13:55] Total number of blocks in optimized block assignment: 0
+[03-06-2026 22:13:55] Total Activation Memory: 0
+[03-06-2026 22:13:55] Total number of generated kernels selected for the engine: 0
+[03-06-2026 22:13:55] Disabling unused tactic source: EDGE_MASK_CONVOLUTIONS
+[03-06-2026 22:13:55] Disabling unused tactic source: JIT_CONVOLUTIONS
+[03-06-2026 22:13:55] Engine generation completed in 10.6946 seconds.
+[03-06-2026 22:13:55] Deleting timing cache: 3 entries, served 0 hits since creation.
+[03-06-2026 22:13:55] Engine Layer Information:
+Layer(DLA): {ForeignNode[Conv_0...Conv_71]}, Tactic: 0x0000000000000003, input (Half[1,3:16,512,1024]) -> logits (Half[1,2:16,512,1024])
+[03-06-2026 22:13:55] [MemUsageChange] TensorRT-managed allocation in building engine: CPU +23, GPU +0, now: CPU 23, GPU 0 (MiB)
+[03-06-2026 22:13:55] Adding 1 engine(s) to plan file.
+[03-06-2026 22:13:55] Loaded engine size: 23 MiB
+[03-06-2026 22:13:55] Deserialization required 2907 microseconds.
+[03-06-2026 22:13:55] [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +23, GPU +0, now: CPU 23, GPU 0 (MiB)
+[03-06-2026 22:13:55] Adding 1 engine(s) to plan file.
+[03-06-2026 22:13:55] DNNGenerator: Serializing extra DNN '/home/benchdev2/dla_lanenet.engine.no_header' for profiling with trtexec.
+[03-06-2026 22:13:56] DNNGenerator: Skipping validation due to non-chw input TensorFormat(s).
+[03-06-2026 22:13:56] [03-06-2026 22:13:56] Releasing Driveworks SDK Context
+benchdev2@tegra-ubuntu:~$ 
+

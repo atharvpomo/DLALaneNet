@@ -112,6 +112,7 @@ class DLALaneSegNet(nn.Module):
       c3:  32x64  (256 ch) layer3
       c4:  16x32  (512 ch) layer4
     Five stride-2 transposed convolutions restore full resolution.
+    Decoder width default 128 (DLA CBUF limit at 512x1024 head; see config.py).
     """
 
     def __init__(self, num_classes: int = NUM_CLASSES) -> None:

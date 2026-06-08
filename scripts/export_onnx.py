@@ -40,6 +40,12 @@ def parse_args() -> argparse.Namespace:
         default=ROOT / "artifacts" / "dla_lanenet_int8_ready.onnx",
     )
     p.add_argument("--opset", type=int, default=13, help="ONNX opset (13 recommended for TRT 8.6)")
+    p.add_argument(
+        "--fp16-io",
+        action="store_true",
+        help="Cast model + I/O to FP16 so the ONNX input/output are FP16. "
+        "Aims to remove the DLA input Reformat CopyNode (pure-DLA build).",
+    )
     return p.parse_args()
 
 
@@ -63,6 +69,11 @@ def main() -> None:
 
     dummy = torch.randn(BATCH_SIZE, INPUT_CHANNELS, INPUT_HEIGHT, INPUT_WIDTH)
 
+    if args.fp16_io:
+        model = model.half()
+        dummy = dummy.half()
+        print("FP16 I/O mode: model + input cast to float16 (input/output tensors will be FP16).")
+
     with torch.no_grad():
         torch.onnx.export(
             model,
@@ -78,11 +89,16 @@ def main() -> None:
             operator_export_type=torch.onnx.OperatorExportTypes.ONNX,
         )
 
+    dtype = "float16" if args.fp16_io else "float32"
     print(f"Exported ONNX: {args.output}")
-    print(f"  input : [{BATCH_SIZE}, {INPUT_CHANNELS}, {INPUT_HEIGHT}, {INPUT_WIDTH}]")
-    print(f"  output: [{BATCH_SIZE}, {NUM_CLASSES}, {INPUT_HEIGHT}, {INPUT_WIDTH}]")
-    print("TensorRT build hints (trtexec / DRIVE OS):")
-    print("  --fp16 / --int8 --calib=<cache> --useDLACore=0 --allowGPUFallback=0")
+    print(f"  input : [{BATCH_SIZE}, {INPUT_CHANNELS}, {INPUT_HEIGHT}, {INPUT_WIDTH}] ({dtype})")
+    print(f"  output: [{BATCH_SIZE}, {NUM_CLASSES}, {INPUT_HEIGHT}, {INPUT_WIDTH}] ({dtype})")
+    print()
+    print("Pure-DLA build on Orin (no GPU fallback):")
+    print("  # Path A - Safe DLA (all layers on DLA, app feeds FP16/NCHWx):")
+    print("    tensorRT_optimization --modelType=onnx --onnxFile=<onnx> --out=<engine> --useSafeDLA=1")
+    print("  # Path B - normal DLA with FP16-I/O ONNX (this file, if --fp16-io was used):")
+    print("    tensorRT_optimization --modelType=onnx --onnxFile=<onnx> --out=<engine> --useDLA=1")
 
 
 if __name__ == "__main__":

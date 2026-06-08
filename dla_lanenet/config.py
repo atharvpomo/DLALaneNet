@@ -20,8 +20,9 @@ TRAIN_LABEL_GLOBS = (
     str(TUSIMPLE_ROOT / "train_set" / "seg_label" / "train_val.json"),
 )
 
-# Decoder width (kept constant for clean INT8 calibration)
-DECODER_CHANNELS = 256
+# Decoder width — 256 overflows DLA CBUF on final 1x1 conv at 1024 width (FP16).
+# 128 fits Orin DLA (Conv_71 data banks 8 + weight 1 <= 16).
+DECODER_CHANNELS = 128
 
 # Lane rasterization
 LANE_LINE_WIDTH = 5
