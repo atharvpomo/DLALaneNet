@@ -46,13 +46,10 @@ coverage.xml
 # Jupyter
 .ipynb_checkpoints/
 
-# Training outputs (regenerated locally)
-checkpoints/
-artifacts/
-*.pt
-*.pth
-*.onnx
-*.engine
+# Training outputs — best/last checkpoints and ONNX are tracked via Git LFS (.gitattributes)
+checkpoints/epoch_*.pt
+artifacts/calib_npy/
+artifacts/validate_npy/
 *.trt
 *.calib
 

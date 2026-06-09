@@ -17,10 +17,14 @@ TuSimple root (default):
 
 ```bash
 cd /home/atharvsh/DLALaneNet
+git lfs install          # once per machine
+git lfs pull             # after clone — fetch .pt / .onnx pointers
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+**Git LFS** tracks large artifacts (`*.pt`, `*.onnx`, `*.engine`, `*.zip`). Install [git-lfs](https://git-lfs.com) if `git lfs` is not found. Intermediate epoch snapshots (`checkpoints/epoch_*.pt`) stay local and are not committed.
 
 ## Train
 
