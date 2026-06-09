@@ -94,11 +94,9 @@ def main() -> None:
     print(f"  input : [{BATCH_SIZE}, {INPUT_CHANNELS}, {INPUT_HEIGHT}, {INPUT_WIDTH}] ({dtype})")
     print(f"  output: [{BATCH_SIZE}, {NUM_CLASSES}, {INPUT_HEIGHT}, {INPUT_WIDTH}] ({dtype})")
     print()
-    print("Pure-DLA build on Orin (no GPU fallback):")
-    print("  # Path A - Safe DLA (all layers on DLA, app feeds FP16/NCHWx):")
-    print("    tensorRT_optimization --modelType=onnx --onnxFile=<onnx> --out=<engine> --useSafeDLA=1")
-    print("  # Path B - normal DLA with FP16-I/O ONNX (this file, if --fp16-io was used):")
-    print("    tensorRT_optimization --modelType=onnx --onnxFile=<onnx> --out=<engine> --useDLA=1")
+    print("Pure-DLA build on Orin (TensorRT 8.6.13, confirmed working):")
+    print("  tensorRT_optimization --modelType=onnx --onnxFile=<onnx> --out=<engine> \\")
+    print("    --useDLA=1 --inputIOFormats=fp16:chw16 --outputIOFormats=fp16:chw16")
 
 
 if __name__ == "__main__":

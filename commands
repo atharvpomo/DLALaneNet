@@ -19,24 +19,51 @@ python scripts/export_calib_npy.py --num-samples 100
 # Fix = make the I/O match DLA's native format so no reformat is inserted.
 # =========================================================================
 
-# Valid fmt tokens (TRT 8.6): chw chw2 chw4 hwc8 chw16 chw32 dhwc8 cdhw32 hwc dla_linear dla_hwc4
-# DLA-only layouts: chw16, dla_linear, dla_hwc4. type must be fp16 for DLA.
+# Valid fmt tokens accepted by THIS DriveWorks build: chw, chw16, chw32, hwc8 ...
+# NOTE: this build's parser REJECTS "dla_linear" (DW_INVALID_ARGUMENT: Invalid TensorFormat).
+#       Use chw16 instead -> it produces the same DLA-native FP16 packed I/O (Half[1,C:16,H,W]).
 
-# STEP 1A — DLA-native row-major I/O (worked on TRT 8.6 per NVIDIA issue #3265).
-cd /home/benchdev2
+# >>> CONFIRMED WORKING: 100% DLA, "No layer is running on GPU".
+# Engine I/O ends up Half[1,3:16,512,1024] -> Half[1,2:16,512,1024] (FP16 chw16-packed).
+# Runtime app must feed FP16 chw16 input (use dwDataConditioner) and read FP16 output.
+# WATCH the path: it's DLALaneNet/dla_lanenet_latest.onnx (slash between dir and file!).
+cd /home/benchdev2/DLALaneNet
 /usr/local/driveworks/tools/dnn/tensorRT_optimization \
   --modelType=onnx \
-  --onnxFile=/home/benchdev2/dla_lanenet_latest.onnx \
-  --out=/home/benchdev2/dla_lanenet.engine \
+  --onnxFile=/home/benchdev2/DLALaneNet/dla_lanenet_latest.onnx \
+  --out=/home/benchdev2/DLALaneNet/dla_lanenet.dla.bin \
   --useDLA=1 \
-  --inputIOFormats=fp16:dla_linear \
-  --outputIOFormats=fp16:dla_linear \
-  --verbose=1 2>&1 | tee /home/benchdev2/dla_io.log
+  --inputIOFormats=fp16:chw16 \
+  --outputIOFormats=fp16:chw16 \
+  --verbose=1 2>&1 | tee /home/benchdev2/DLALaneNet/dla_io.log
+# Note: "Skipping validation due to non-chw input TensorFormat(s)" is informational, NOT an error.
 
-# STEP 1B — if 1A still reformats, try chw16 (DLA 16-ch packed):
-#   --inputIOFormats=fp16:chw16 --outputIOFormats=fp16:chw16
-# STEP 1C — 3-channel image input variant:
-#   --inputIOFormats=fp16:dla_hwc4 --outputIOFormats=fp16:dla_linear
+# Fallbacks if chw16 is ever rejected:
+#   plain linear (TRT picks DLA packing): --inputIOFormats=fp16:chw --outputIOFormats=fp16:chw
+
+# =========================================================================
+# RUNTIME LOAD on Orin — TWO DIFFERENT ARTIFACTS (do NOT confuse them):
+#
+#   tensorRT_optimization --useDLA=1  => a TensorRT ENGINE (DLA ForeignNode inside).
+#     Load via DriveWorks DNN TensorRT runtime. DO NOT pass --cudla=1.
+#       ./dla_lanenet --image=1.png --tensorRT_model=dla_lanenet.bin --cudla=0
+#     (renaming .bin -> .dla.bin does NOTHING; bytes are still a TRT engine)
+#
+#   cuDLA standalone (--cudla=1) needs a DLA STANDALONE LOADABLE (kDLA_STANDALONE).
+#     Error "cudlaModuleLoadFromMemory ... failed. 7" = you fed it a TRT engine.
+#     The DriveWorks tensorRT_optimization tool CANNOT build this (no --safe flag).
+#     Build it with trtexec --safe instead:
+#       which trtexec; ls /usr/src/tensorrt/bin/trtexec
+#       ls /lib/aarch64-linux-gnu/libnvinfer_safe.so*   # safe runtime must exist
+#       trtexec --onnx=/home/benchdev2/DLALaneNet/dla_lanenet_latest.onnx \
+#         --saveEngine=/home/benchdev2/DLALaneNet/dla_lanenet.dla \
+#         --useDLACore=0 --fp16 \
+#         --inputIOFormats=fp16:chw16 --outputIOFormats=fp16:chw16 \
+#         --buildOnly --safe --verbose
+#     Then: ./dla_lanenet --image=1.png --tensorRT_model=dla_lanenet.dla --cudla=1
+#     If "Safety is not supported because safety runtime library is unavailable":
+#       safe runtime libs (libnvinfer_safe.so) are missing on this install.
+# =========================================================================
 
 # STEP 2 — if all reformat: re-export ONNX with FP16 I/O (no retrain), then 1A again.
 #   On dev box:
@@ -46,7 +73,7 @@ cd /home/benchdev2
 #     tensorRT_optimization --modelType=onnx \
 #       --onnxFile=/home/benchdev2/dla_lanenet_fp16io.onnx \
 #       --out=/home/benchdev2/dla_lanenet.engine --useDLA=1 \
-#       --inputIOFormats=fp16:dla_linear --outputIOFormats=fp16:dla_linear
+#       --inputIOFormats=fp16:chw16 --outputIOFormats=fp16:chw16
 
 # NOTE: --int8 crashes this DriveWorks build with stoi even without DLA (tool bug / broken INT8 path)
 
